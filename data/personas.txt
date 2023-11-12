@@ -1,0 +1,10 @@
+Cliente;hector ostos;1123456789;05/10/1970;colombiano;noreply3@uniandes.edu.co;3159289032;ostos;0001;123490345634;1234589356456345
+Administrador General;hector diaz;1123456780;06/11/1980;colombiano;noreply1@uniandes.edu.co;3159289033;diaz;1234;general
+Empleado;hector martinez;1123456781;07/12/1990;colombiano;noreply2@uniandes.edu.co;3159289034;martinez;12345;motorspalmas
+Cliente;hector tomas;1123456782;08/01/2000;colombiano;noreply4@uniandes.edu.co;3159289035;tomasdiaz;0002;123456789123;2435434356782345
+Cliente;hector samara;1123456783;09/02/2001;colombiano;noreply5@uniandes.edu.co;3159289036;samaramartinez;0003;234523456255;1243567489037834
+Administrador Local;anuel;1123456784;06/11/1981;colombiano;noreply6@uniandes.edu.co;3159289037;anuel;1111;motorspalmas
+Administrador Local;bad bunny;1123456785;06/11/1982;colombiano;noreply7@uniandes.edu.co;3159289038;bad;1112;motorscañas
+Administrador Local;luar la l;1123456786;06/11/1983;colombiano;noreply8@uniandes.edu.co;3159289039;luar;1113;motorsflora
+Empleado;feid;1123456771;07/12/2004;colombiano;noreply9@uniandes.edu.co;3159289021;feid;1114;motorsflora
+Empleado;karolg;1123456761;07/12/1999;colombiano;noreply10@uniandes.edu.co;3159289022;karolg;1115;motorscañas

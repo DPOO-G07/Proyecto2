@@ -1,0 +1,3 @@
+1;pequeños;motorspalmas;16/10/2023;8AM;17/10/2023;9AM;100000;hector ostos;activo
+2;SUV;motorscañas;18/10/2023;10AM;19/10/2023;11AM;110000;hector tomas;activo
+3;Lujo;motorsflora;20/10/2023;4PM;21/10/2023;4PM;120000;hector samara;activo

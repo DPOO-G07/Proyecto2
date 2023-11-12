@@ -1,0 +1,2 @@
+Seguros Bolivar;20000
+Seguros Sura;30000

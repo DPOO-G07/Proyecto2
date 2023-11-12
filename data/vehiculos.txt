@@ -1,0 +1,9 @@
+1;SUV;mantenimiento;85#45b;cki718;mazda;allegro;blanco;manual;6;motorspalmas
+2;pequeños;disponible;85#45b;cki719;susuki;ignis;negro;manual;5;motorspalmas
+3;lujo;disponible;85#45b;cki720;mercedes;gclass;rojo;automatico;7;motorspalmas
+4;SUV;disponible;19#2a;cki721;mazda;allegro;negro;manual;6;motorscañas
+5;pequeños;mantenimiento;19#2a;cki722;susuki;ignis;blanco;manual;5;motorscañas
+6;lujo;disponible;19#2a;cki723;mercedes;gclass;rosado;automatico;7;motorscañas
+7;SUV;disponible;120#3c;cki724;mazda;allegro;azul;manual;6;motorsflora
+8;pequeños;disponible;120#3c;cki725;susuki;ignis;violeta;manual;5;motorsflora
+9;lujo;mantenimiento;120#3c;cki726;mercedes;gclass;amarillo;automatico;7;motorsflora
