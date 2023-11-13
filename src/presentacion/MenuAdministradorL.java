@@ -1,5 +1,7 @@
 package presentacion;
 
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,28 +19,24 @@ public class MenuAdministradorL extends JPanel{
 	
 	public MenuAdministradorL (control con) {
 		this.con = con;
-		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.infoSede = new JButton("Lista Empleados");
-		this.infoClientes = new JButton("Informacion Cliente ");
-		this.nuevoClie = new JButton("Agregar Cliente ");
-		this.nuevoEmp = new JButton("Agregar Empleado ");
-		this.vehiSede = new JButton("Lista Vehiculos Sede");
-		this.actualizar = new JButton("Actualizar Estado Vehiculo ");
-		
-		
-		
-		
-		
-		this.add(Box.createVerticalGlue());
-		this.add(infoSede);
-		this.add(infoClientes);
-		this.add(nuevoClie);
-		this.add(nuevoEmp);
-		this.add(vehiSede);
-		this.add(actualizar);
-		
-		this.add(Box.createVerticalGlue());
+
+        // Cambio de BoxLayout a FlowLayout
+        // this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+        this.infoSede = new JButton("Lista Empleados");
+        this.infoClientes = new JButton("Informacion Cliente ");
+        this.nuevoClie = new JButton("Agregar Cliente ");
+        this.nuevoEmp = new JButton("Agregar Empleado ");
+        this.vehiSede = new JButton("Lista Vehiculos Sede");
+        this.actualizar = new JButton("Actualizar Estado Vehiculo ");
+
+        this.add(infoSede);
+        this.add(infoClientes);
+        this.add(nuevoClie);
+        this.add(nuevoEmp);
+        this.add(vehiSede);
+        this.add(actualizar);
 		
 		infoSede.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

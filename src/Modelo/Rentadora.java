@@ -463,10 +463,21 @@ public class Rentadora {
 			String celular = String.valueOf(se.getCelular());
 			String login = se.getLogin();
 			String pass = se.getPassword();
-
+			if ((se instanceof Empleado)) {
+		        Empleado empleado = (Empleado) se;
+		        String nomsede = empleado.getNomsede();
+		        pw3.println(cargo+ ";" + nom + ";" +cedula+ ";" + fechanac+ ";" + nacionalidad+ ";" + email + ";" +celular+ ";" + login+ ";" + pass + ";"+ nomsede);
+			}
+			else if (se instanceof Cliente){
+				Cliente clien = (Cliente) se;
+			    String metodopago = String.valueOf(clien.getMetododePago());
+			    String licencia = String.valueOf(clien.getLicenciadeConduccion());
+				pw3.println(cargo+ ";" + nom + ";" +cedula+ ";" + fechanac+ ";" + nacionalidad+ ";" + email + ";" +celular+ ";" + login+ ";" + pass + ";" + licencia+";"+ metodopago);
+				
 			
 			
-			pw3.println(cargo+ ";" + nom + ";" +cedula+ ";" + fechanac+ ";" + nacionalidad+ ";" + email + ";" +celular+ ";" + login+ ";" + pass);
+			
+		}
 		}
 		pw3.close();
 		OutputStream os4 = new FileOutputStream(archivoPro);
@@ -483,7 +494,7 @@ public class Rentadora {
 			pw4.println(nombre + ";" +vehiculo + ";" +cantidad);
 		}
 		pw4.close();
-		OutputStream os5 = new FileOutputStream(archivoPro);
+		OutputStream os5 = new FileOutputStream(archivoSeg);
 		PrintWriter pw5 = new PrintWriter(new OutputStreamWriter(os5, "UTF-8"));
 		ArrayList<SeguroAdicional> temp5 = new ArrayList<SeguroAdicional> (seguros.values());
 		

@@ -1,2 +1,3 @@
-Seguros Bolivar;20000
-Seguros Sura;30000
+Mercado libre;mazda;8
+Automercol;susuki;9
+La romana;mercedes;10

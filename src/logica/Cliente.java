@@ -2,6 +2,18 @@ package logica;
 
 public class Cliente extends Persona{
 	
+	public double getLicenciadeConduccion() {
+		return licenciadeConduccion;
+	}
+	public void setLicenciadeConduccion(double licenciadeConduccion) {
+		this.licenciadeConduccion = licenciadeConduccion;
+	}
+	public double getMetododePago() {
+		return metododePago;
+	}
+	public void setMetododePago(double metododePago) {
+		this.metododePago = metododePago;
+	}
 	public double licenciadeConduccion;
 	public double metododePago;
 	public Cliente(String cargo,String nombre, double cedula, String fechadeNacimiento, String nacionalidad, String email,
