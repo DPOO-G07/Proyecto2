@@ -79,16 +79,16 @@ public class control {
 		this.menuE = new MenuEmpleado(this);
 		this.menuCl = new MenuCliente(this);
 		
-		this.ren = carga.Leer("Proyecto2/data/personas.txt", "Proyecto2/data/sede.txt", "Proyecto2/data/reserva.txt", "Proyecto2/data/vehiculos.txt","Proyecto2/data/Proveedores.txt","Proyecto2/data/Seguros.txt");
+		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt");
 		
 	}
 	public void salvar() throws FileNotFoundException, UnsupportedEncodingException {
-		File archivoVehiculos = new File("Proyecto2/data/vehiculos.txt");
-		File archivoSede = new File("Proyecto2/data/sede.txt");
-		File archivoreservas = new File("Proyecto2/data/reserva.txt");
-		File archivopersonas= new File("Proyecto2/data/personas.txt");
-		File archivopro = new File("Proyecto2/data/Proveedores.txt");
-		File archivoseg = new File("Proyecto2/data/Seguros.txt");
+		File archivoVehiculos = new File("data/vehiculos.txt");
+		File archivoSede = new File("data/sede.txt");
+		File archivoreservas = new File("data/reserva.txt");
+		File archivopersonas= new File("data/personas.txt");
+		File archivopro = new File("data/Proveedores.txt");
+		File archivoseg = new File("data/Seguros.txt");
 		ren.salvar(archivoVehiculos, archivoSede, archivoreservas, archivopersonas, archivopro, archivoseg);
 		
 	}
@@ -472,13 +472,12 @@ public class control {
 	}
 	
 
-public void reservar(){
-	
-}
-public void actualizarCl() {
-	
-}
-	
+	public void reservar(){
+		
+	}
+	public void recoger() {
+		
+	}
  	public void nom( ) {
 		JOptionPane.showMessageDialog(inter,  this.clien.getNombre(),"Cliente", JOptionPane.INFORMATION_MESSAGE);
 	}

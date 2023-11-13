@@ -12,7 +12,7 @@ import Controlador.control;
 
 public class MenuCliente extends JPanel {
 
-	private JButton reservar, actualizarCl;
+	private JButton reservar, recoger;
 	private control con;
 
 	public MenuCliente (control con) {
@@ -20,7 +20,7 @@ public class MenuCliente extends JPanel {
 			
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			this.reservar = new JButton("Reservar");
-			this.actualizarCl = new JButton("Actualizar Informacion");
+			this.recoger = new JButton("Recoger Vehiculo");
 			
 			
 			
@@ -28,7 +28,7 @@ public class MenuCliente extends JPanel {
 			
 			this.add(Box.createVerticalGlue());
 			this.add(reservar); 
-			this.add(actualizarCl);
+			this.add(recoger);
 			
 			this.add(Box.createVerticalGlue());
 			
@@ -39,9 +39,9 @@ public class MenuCliente extends JPanel {
 				}
 			});
 			
-			actualizarCl.addActionListener(new ActionListener(){
+			recoger.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				con.actualizarCl();
+				con.reservar();
 				}
 			});
 			

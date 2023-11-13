@@ -22,6 +22,7 @@ public class Interfaz extends JFrame {
 	public MenuAdministradorL adminL;
 	public MenuAdministradorG adminG;
 	public MenuEmpleado empleado;
+	public MenuCliente cliente;
 	
 	
 	
@@ -39,11 +40,12 @@ public class Interfaz extends JFrame {
 		this.adminL = con.getMenuadminL();
 		this.adminG = con.getMenuadminG();
 		this.empleado = con.getMenuE();
+		this.cliente = con.getMenuCl();
 		this.cardPanel.add(in, "Inicio");
 		this.cardPanel.add(adminL, "Admin Local");
 		this.cardPanel.add(adminG, "Administrador General");
 		this.cardPanel.add(empleado, "Empleado");
-		this.cardPanel.add(empleado, "Cliente");
+		this.cardPanel.add(cliente, "Cliente");
 		
 		
 		
