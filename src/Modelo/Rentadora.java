@@ -75,6 +75,10 @@ public class Rentadora {
 		
 		return Sedes;
 	}
+	public Map<String, SeguroAdicional> darsEGUROS() {
+		
+		return seguros;
+	}
 	public Map<Double, Reserva> darReservas() {
 		
 		return Reservas;
@@ -83,6 +87,12 @@ public class Rentadora {
 		
 		return Vehiculos;
 	}
+	public int devolvercostoSeguro(String seguro){
+		 SeguroAdicional seguroo =  seguros.get(seguro);
+		 int tarifadia = seguroo.getTarifaporDia();
+		 return tarifadia;
+	}
+	
 	public String verificarIdentidad(String usuario, String Password) {
 		Persona lapersona =  Personas.get(usuario);
 		String contraseña = lapersona.getPassword();
@@ -374,6 +384,21 @@ public class Rentadora {
 		cobro = cobro*0.7;
 		return cobro;
 		}
+	
+	public double obtenercobroconseguro(double id, int cobroseguro) throws ParseException {
+		Reserva reserva = Reservas.get(id);
+		String fechainicio = reserva.getFechadeRecoleccion();
+		String fechafinal = reserva.getFechadeEntrega();
+		double dias = obtenerNumeroDeDiasdeunareserva(fechainicio,fechafinal);
+		double cobro = obtenercobrofinal(id);
+		double cobroconseguro = dias * cobroseguro * cobro;
+		
+		return cobroconseguro;
+	
+		
+		
+		
+	}
 	
 	//public double obtenercobrofinalcontarifaadicional() {
 		

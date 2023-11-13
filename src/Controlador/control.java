@@ -503,7 +503,30 @@ public class control {
 	}
 	public void recoger() {
 		String conductorextra = JOptionPane.showInputDialog("Desea añadir un conductor responda si/no");
-		
+		if (conductorextra == "si" ) {
+			double id =  Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el numero de la reserva:"));
+			double cobro = ren.obtenercobrofinal(id);
+			String seguroAd = JOptionPane.showInputDialog("El cobro de un condctor adicional es de: " + cobro*0.2 + "Es decir el cobro total seria de: " + (cobro*0.2+cobro*0.7) + "\nDeseea incluir un seguro adiciona responda si/no");
+			if (seguroAd == "si") {
+				String seguro = JOptionPane.showInputDialog("Por favor escoja un seguro: \n Seguros Bolivar  \n Seguros Sura ");
+				int costoundiaseguro = ren.devolvercostoSeguro(seguro);
+				double costototalseguro = ren.obtenercobroconseguro(id, costoundiaseguro);
+				
+				
+				
+			}else {
+				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
+				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = input("Por favor ingrese el tipo de tarjeta:");
+				new MetododePago(numerotar,fechacaducidad,tipo);
+				System.out.println("Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo");
+			}
+				
+			
+		}
+		if(conductorextra == "no") {
+			
+		}
 	}
  	public void nom( ) {
 		JOptionPane.showMessageDialog(inter,  this.clien.getNombre(),"Cliente", JOptionPane.INFORMATION_MESSAGE);
