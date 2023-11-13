@@ -79,12 +79,18 @@ public class control {
 		this.menuE = new MenuEmpleado(this);
 		this.menuCl = new MenuCliente(this);
 		
-		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt");
+		this.ren = carga.Leer("Proyecto2/data/personas.txt", "Proyecto2/data/sede.txt", "Proyecto2/data/reserva.txt", "Proyecto2/data/vehiculos.txt","Proyecto2/data/Proveedores.txt","Proyecto2/data/Seguros.txt");
 		
 	}
 	public void salvar() throws FileNotFoundException, UnsupportedEncodingException {
-		File archivo2 = new File("data/top10.csv");
-		//top.salvarRecords(archivo2);
+		File archivoVehiculos = new File("Proyecto2/data/vehiculos.txt");
+		File archivoSede = new File("Proyecto2/data/sede.txt");
+		File archivoreservas = new File("Proyecto2/data/reserva.txt");
+		File archivopersonas= new File("Proyecto2/data/personas.txt");
+		File archivopro = new File("Proyecto2/data/Proveedores.txt");
+		File archivoseg = new File("Proyecto2/data/Seguros.txt");
+		ren.salvar(archivoVehiculos, archivoSede, archivoreservas, archivopersonas, archivopro, archivoseg);
+		
 	}
 	
 	
@@ -238,7 +244,7 @@ public class control {
 	public void actualizarV() {
 		
 		
-		JFrame frame = new JFrame("Informacion Cliente");
+		JFrame frame = new JFrame("Modificar vehiculos");
 		ModificarVehi panel = new ModificarVehi(this);
 		
 		frame.add(panel);

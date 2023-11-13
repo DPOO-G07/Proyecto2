@@ -377,7 +377,7 @@ public class Rentadora {
 	
 	//public double obtenercobrofinalcontarifaadicional() {
 		
-	public void salvarRecords(File archivoVehiculos, File archivoSede) throws FileNotFoundException, UnsupportedEncodingException
+	public void salvar(File archivoVehiculos, File archivoSede, File archivoReservas, File archivoPersonas, File archivoPro, File archivoSeg) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		OutputStream os = new FileOutputStream(archivoSede);
 		PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
@@ -414,13 +414,97 @@ public class Rentadora {
 			String sede = se.getSede();
 			
 			
-			pw.println(id + ";" + categoria + ";" +estado + ";" +  ubicacion + ";" + placa + ";" +marca+ ";" + modelo+ ";" + color+ ";" + tipotr + ";" +numpersonas+ ";" + sede);
+			pw1.println(id + ";" + categoria + ";" +estado + ";" +  ubicacion + ";" + placa + ";" +marca+ ";" + modelo+ ";" + color+ ";" + tipotr + ";" +numpersonas+ ";" + sede);
 		}
 		pw1.close();
+		OutputStream os2 = new FileOutputStream(archivoReservas);
+		PrintWriter pw2 = new PrintWriter(new OutputStreamWriter(os2, "UTF-8"));
+		ArrayList<Reserva> temp2 = new ArrayList<Reserva> (Reservas.values());
+	
+		
+		for (Reserva se : temp2)
+		{
+			
+			String numreserva = String.valueOf(se.getNumerodereserva());
+			
+			String tipovehi = se.getTipodeVehiculo();
+			String lasede = se.getSede();
+			String fecharec = se.getFechadeRecoleccion();
+			String horarec = se.getHoradeRecoleccion();
+			String fechaentre = se.getFechadeEntrega();
+			String fechaentreho = se.getHoradeEntrega();
+			String cobro = String.valueOf(se.getCobro());
+			String nomcliente = se.getNomcliente();
+			String estado = se.getEstado();
+
+			
+			
+			pw2.println(numreserva + ";" +tipovehi + ";" +lasede + ";" +fecharec + ";" +horarec+ ";" + fechaentre+ ";" + fechaentreho+ ";" +
+					cobro + ";" +nomcliente + ";" +estado);
+		}
+		pw2.close();
+		OutputStream os3 = new FileOutputStream(archivoPersonas);
+		PrintWriter pw3 = new PrintWriter(new OutputStreamWriter(os3, "UTF-8"));
+		ArrayList<Persona> temp3 = new ArrayList<Persona> (Personas.values());
+
+		
+		for (Persona se : temp3)
+		{
+			String cargo = se.getCargo();
+			String nom = se.getNombre();
+			String cedula = String.valueOf(se.getCedula());
+			
+			
+			
+			String fechanac = se.getFechadeNacimiento();
+			String nacionalidad= se.getNacionalidad();
+			String email = se.getEmail();
+			
+			String celular = String.valueOf(se.getCelular());
+			String login = se.getLogin();
+			String pass = se.getPassword();
+
+			
+			
+			pw3.println(cargo+ ";" + nom + ";" +cedula+ ";" + fechanac+ ";" + nacionalidad+ ";" + email + ";" +celular+ ";" + login+ ";" + pass);
+		}
+		pw3.close();
+		OutputStream os4 = new FileOutputStream(archivoPro);
+		PrintWriter pw4 = new PrintWriter(new OutputStreamWriter(os4, "UTF-8"));
+		ArrayList<Proveedor> temp4 = new ArrayList<Proveedor> (proveedores.values());
+		
+		for (Proveedor se : temp4)
+		{
+			String nombre = se.getNombre() ;
+			String vehiculo = se.getVehiculo();
+			
+			String cantidad = String.valueOf(se.getCantidaddeVehiculo());
+			
+			pw4.println(nombre + ";" +vehiculo + ";" +cantidad);
+		}
+		pw4.close();
+		OutputStream os5 = new FileOutputStream(archivoPro);
+		PrintWriter pw5 = new PrintWriter(new OutputStreamWriter(os5, "UTF-8"));
+		ArrayList<SeguroAdicional> temp5 = new ArrayList<SeguroAdicional> (seguros.values());
+		
+		for (SeguroAdicional se : temp5)
+		{
+			String nombre = se.getNombredelSeguro() ;
+			
+			
+			String precio = String.valueOf(se.getTarifaporDia());
+			
+			pw5.println(nombre + ";" +precio);
+		}
+		pw5.close();
+	}
 	}
 	
 	
-}
+
+	
+	
+
 
 
 
