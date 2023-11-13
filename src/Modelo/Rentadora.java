@@ -158,8 +158,8 @@ public class Rentadora {
 	
 		
 		public void agregarPersona (String cargo,String nombre, double cedula, String fechadeNacimiento, String nacionalidad, String email,
-				double celular, String login, String password) {
-			String nomsede = (input("Por favor ingrese la sede que hara parte"));
+				double celular, String login, String password, String nomsede) {
+			
 			Empleado lapersona = new Empleado(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password,nomsede);
 			Sede lasede = Sedes.get(nomsede);
 			Map<String, Empleado> mapa = lasede.getListaempleados();

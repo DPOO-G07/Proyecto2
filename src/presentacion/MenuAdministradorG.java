@@ -1,5 +1,10 @@
 package presentacion;
 
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +23,10 @@ public class MenuAdministradorG extends JPanel{
 	public MenuAdministradorG (control con) {
 		this.con = con;
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.infoSede = new JButton("Informacion Empleados");
+		this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.fill = GridBagConstraints.HORIZONTAL; 		this.infoSede = new JButton("Informacion Empleados");
 		this.infoClientes = new JButton("Informacion Clientes ");
 		this.nuevoClie = new JButton("Agregar Cliente ");
 		this.nuevoEmp = new JButton("Agregar Empleado ");
@@ -30,18 +37,38 @@ public class MenuAdministradorG extends JPanel{
 		this.sede = new JButton("Desea gestionar una sede?");
 		this.proveedor = new JButton("Desea gestionar un proveedor? ");
 		
-		this.add(Box.createVerticalGlue());
-		this.add(infoSede);
-		this.add(infoClientes);
-		this.add(nuevoClie);
-		this.add(nuevoEmp);
-		this.add(vehiSede);
-		this.add(actualizar);
-		this.add(tarifas);
-		this.add(seguros);
-		this.add(sede);
-		this.add(proveedor);
-		this.add(Box.createVerticalGlue());
+		gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(infoSede, gbc);
+
+        gbc.gridy = 1;
+        this.add(infoClientes, gbc);
+
+        gbc.gridy = 2;
+        this.add(nuevoClie, gbc);
+
+        gbc.gridy = 3;
+        this.add(nuevoEmp, gbc);
+
+        gbc.gridy = 4;
+        this.add(vehiSede, gbc);
+
+        gbc.gridy = 5;
+        this.add(actualizar, gbc);
+        
+        gbc.gridy = 6;
+        this.add(tarifas, gbc);
+
+        gbc.gridy = 7;
+        this.add(seguros, gbc);
+
+        gbc.gridy = 8;
+        this.add(sede, gbc);
+
+        gbc.gridy = 9;
+        this.add(proveedor, gbc);
+
+       
 		
 		infoSede.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

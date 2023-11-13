@@ -1,5 +1,10 @@
 package presentacion;
 
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +23,10 @@ public class MenuEmpleado extends JPanel{
 	public MenuEmpleado (control con) {
 		this.con = con;
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
+		this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.fill = GridBagConstraints.HORIZONTAL;		
 		this.infoClientes = new JButton("Informacion Cliente ");
 		this.nuevoClie = new JButton("Agregar Cliente ");
 		
@@ -30,15 +37,15 @@ public class MenuEmpleado extends JPanel{
 	
 		
 		
-		this.add(Box.createVerticalGlue());
-		
-		this.add(infoClientes);
-		this.add(nuevoClie);
-		
-		this.add(vehiSede);
-	
-		
-		this.add(Box.createVerticalGlue());
+		  gbc.gridx = 0;
+	        gbc.gridy = 0;
+	        this.add(vehiSede, gbc);
+
+	        gbc.gridy = 1;
+	        this.add(infoClientes, gbc);
+
+	        gbc.gridy = 2;
+	        this.add(nuevoClie, gbc);
 		
 		
 		

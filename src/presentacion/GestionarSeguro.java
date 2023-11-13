@@ -1,5 +1,8 @@
 package presentacion;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,21 +21,27 @@ public class GestionarSeguro extends JPanel {
 		this.con = con;
 		
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.fill = GridBagConstraints.HORIZONTAL; 
+        
 		this.agregarSeg = new JButton(" Desea agregar un seguro?  ");
 		
 		this.consultarSeg = new JButton("Desea saber que seguros hay?");
 		this.eliminarSeg = new JButton("Desea eliminar un seguro? " );
 		
 		
-		this.add(Box.createVerticalGlue());
-		this.add(consultarSeg);
-		this.add(agregarSeg);
-		
-		this.add(eliminarSeg);
-		
+		 gbc.gridx = 0;
+	        gbc.gridy = 0;
+	        this.add(agregarSeg, gbc);
 
-		this.add(Box.createVerticalGlue());
+	        gbc.gridy = 1;
+	        this.add(consultarSeg, gbc);
+
+	        gbc.gridy = 2;
+	        this.add(eliminarSeg, gbc);
+
 		agregarSeg.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				con.agregarSeguro();;

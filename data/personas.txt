@@ -6,5 +6,6 @@ Cliente;hector ostos;1.123456789E9;05/10/1970;colombiano;noreply3@uniandes.edu.c
 Cliente;hector tomas;1.123456782E9;08/01/2000;colombiano;noreply4@uniandes.edu.co;1.123456782E9;tomasdiaz;0002;1.23456789123E11;2.435434356782345E15
 Administrador Local;luar la l;1.123456786E9;06/11/1983;colombiano;noreply8@uniandes.edu.co;1.123456786E9;luar;1113;motorsflora
 Empleado;hector martinez;1.123456781E9;07/12/1990;colombiano;noreply2@uniandes.edu.co;1.123456781E9;martinez;12345;motorspalmas
+Cliente;felipe;1.000719085E9;04/02/2000;peruana;felipirpperu@gmail.com;1.000719085E9;felipeperu;12345;1.2039421E7;1.209342123E9
 Cliente;hector samara;1.123456783E9;09/02/2001;colombiano;noreply5@uniandes.edu.co;1.123456783E9;samaramartinez;0003;2.34523456255E11;1.243567489037834E15
 Empleado;karolg;1.123456761E9;07/12/1999;colombiano;noreply10@uniandes.edu.co;1.123456761E9;karolg;1115;motorscañas

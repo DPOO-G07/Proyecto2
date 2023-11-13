@@ -313,11 +313,13 @@ public class control {
 		String password = JOptionPane.showInputDialog("Por favor ingrese deje a la persona ingresar su contraseña");
 		if(cargo.equals("Cliente")) {
 			Double licencia = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su licencia"));
-			Double metododepago = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su metodo de pago"));
+			Double metododepago = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su metodo de pago(numero de la tarjeta)"));
 			ren.agregarPersonaCL(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password,licencia,metododepago);
 		}
 		else {
-			ren.agregarPersona(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password);
+			
+			String nomsede = JOptionPane.showInputDialog("Por favor ingrese la sede que hara parte");
+			ren.agregarPersona(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password, nomsede);
 		}
 		
 		JOptionPane.showMessageDialog(inter,"Exito", "Se agrego con exito a la persona", JOptionPane.INFORMATION_MESSAGE);

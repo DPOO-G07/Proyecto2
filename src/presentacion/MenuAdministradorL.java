@@ -1,6 +1,10 @@
 package presentacion;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +24,11 @@ public class MenuAdministradorL extends JPanel{
 	public MenuAdministradorL (control con) {
 		this.con = con;
 
-        // Cambio de BoxLayout a FlowLayout
-        // this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 10, 10));
+        
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.fill = GridBagConstraints.HORIZONTAL; 
 
         this.infoSede = new JButton("Lista Empleados");
         this.infoClientes = new JButton("Informacion Cliente ");
@@ -31,13 +37,24 @@ public class MenuAdministradorL extends JPanel{
         this.vehiSede = new JButton("Lista Vehiculos Sede");
         this.actualizar = new JButton("Actualizar Estado Vehiculo ");
 
-        this.add(infoSede);
-        this.add(infoClientes);
-        this.add(nuevoClie);
-        this.add(nuevoEmp);
-        this.add(vehiSede);
-        this.add(actualizar);
-		
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(infoSede, gbc);
+
+        gbc.gridy = 1;
+        this.add(infoClientes, gbc);
+
+        gbc.gridy = 2;
+        this.add(nuevoClie, gbc);
+
+        gbc.gridy = 3;
+        this.add(nuevoEmp, gbc);
+
+        gbc.gridy = 4;
+        this.add(vehiSede, gbc);
+
+        gbc.gridy = 5;
+        this.add(actualizar, gbc);
 		infoSede.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				con.infoempleados();

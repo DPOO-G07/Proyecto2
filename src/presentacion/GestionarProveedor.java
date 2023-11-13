@@ -1,5 +1,8 @@
 package presentacion;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,21 +21,31 @@ public class GestionarProveedor extends JPanel {
 		this.con = con;
 		
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.fill = GridBagConstraints.HORIZONTAL; 
+        
 		this.agregarPro = new JButton(" Desea agregar un proveedor?  ");
 		
 		this.consultarPro = new JButton("Desea saber que proveedores hay?");
 		this.eliminarPro = new JButton("Desea eliminar un proveedor? " );
 		this.pedido = new JButton("Desea hacer un pedido? ");
 		
-		this.add(Box.createVerticalGlue());
-		this.add(consultarPro);
-		this.add(agregarPro);
-		
-		this.add(eliminarPro);
-		this.add(pedido);
+		 gbc.gridx = 0;
+	        gbc.gridy = 0;
+	        this.add(agregarPro, gbc);
 
-		this.add(Box.createVerticalGlue());
+	        gbc.gridy = 1;
+	        this.add(consultarPro, gbc);
+
+	        gbc.gridy = 2;
+	        this.add(eliminarPro, gbc);
+
+	        gbc.gridy = 3;
+	        this.add(pedido, gbc);
+
+	        
 		agregarPro.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				con.agregrProveedor();;

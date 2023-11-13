@@ -1,5 +1,8 @@
 package presentacion;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +21,11 @@ public class InformacionCL extends JPanel{
 	
 	public InformacionCL(control con) {
 		this.con = con;
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.fill = GridBagConstraints.HORIZONTAL; 
+        
 		this.nom = new JButton("Desea saber su nombre");
 		this.cedula = new JButton("Desea saber su cedula");
 		this.fechanac = new JButton("Desea saber su fecha de nacimiento ");
@@ -26,16 +33,27 @@ public class InformacionCL extends JPanel{
 		this.email = new JButton(" Desea saber su email");
 		this.numero = new JButton("Desea saber su numero");
 		this.login = new JButton(" Desea saber su login");
-		this.add(Box.createVerticalGlue());
-		this.add(nom);
-		this.add(cedula);
-		this.add(fechanac);
-		this.add(nacionalidad);
-		this.add(email);
-		this.add(numero);
-		this.add(login);
-		
-		this.add(Box.createVerticalGlue());
+		gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(nom, gbc);
+
+        gbc.gridy = 1;
+        this.add(cedula, gbc);
+
+        gbc.gridy = 2;
+        this.add(fechanac, gbc);
+
+        gbc.gridy = 3;
+        this.add(nacionalidad, gbc);
+
+        gbc.gridy = 4;
+        this.add(email, gbc);
+
+        gbc.gridy = 5;
+        this.add(numero, gbc);
+        gbc.gridy = 6;
+        this.add(login, gbc);
+	
 		nom.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				con.nom();
