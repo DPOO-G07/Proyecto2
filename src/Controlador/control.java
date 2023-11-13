@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.swing.DefaultListCellRenderer;
@@ -18,6 +20,7 @@ import javax.swing.JScrollPane;
 
 import Modelo.Rentadora;
 import logica.Cliente;
+import logica.MetododePago;
 import logica.Persona;
 import logica.Vehiculo;
 import presentacion.GestionarProveedor;
@@ -472,10 +475,34 @@ public class control {
 	}
 	
 
-	public void reservar(){
+	public void reservar() throws ParseException{
+			String categoria = JOptionPane.showInputDialog("Estas son las categorias disponibles:\n Economico \n SUV \n Pequeño \n Lujo \n Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar:");
+			String sede = JOptionPane.showInputDialog("Estas son las sedes disponibles:\n Motors Cañas \n Motors Palmas \n Motors Flora \n Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo:");
+			String fechadeRecoleccion = JOptionPane.showInputDialog("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo:");
+			String horadeRecoleccion = JOptionPane.showInputDialog("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo:");
+			String fechadeEntrega = JOptionPane.showInputDialog("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo:");
+			String horadeEntrega = JOptionPane.showInputDialog("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo:");
+			String nombre = JOptionPane.showInputDialog("Por favor ingrese su nombre:");
+			ArrayList<Double> lista = ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
+			double cobro =lista.get(0);
+			double id = lista.get(1);
+			double cobro30 = cobro * 0.3;
+			double numerotar =  Double.parseDouble(JOptionPane.showInputDialog("El monto que debe pagar el cual corresponde al 30% del valor es: " + cobro30 + "\nPor favor ingrese el numero de tarjeta:"));
+			String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+			String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
+			new MetododePago(numerotar,fechacaducidad,tipo);
+			JOptionPane.showMessageDialog(inter,"Exito", "Se realizo con exito la reserva y el cobro del 30%, puede pasar el :" + fechadeRecoleccion + " a las" + horadeRecoleccion + "a la sede" + sede + "para poder recoger su carro, el numero de reserva es: "+ id, JOptionPane.INFORMATION_MESSAGE);
+			
+			
+			
+			
+			
+			
+	
 		
 	}
 	public void recoger() {
+		String conductorextra = JOptionPane.showInputDialog("Desea añadir un conductor responda si/no");
 		
 	}
  	public void nom( ) {

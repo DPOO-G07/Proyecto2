@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -34,14 +35,19 @@ public class MenuCliente extends JPanel {
 			
 			reservar.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					con.reservar();
+					try {
+						con.reservar();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 				}
 			});
 			
 			recoger.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				con.reservar();
+				con.recoger();
 				}
 			});
 			
