@@ -506,13 +506,20 @@ public class control {
 		String conductorextra = JOptionPane.showInputDialog("Desea añadir un conductor responda si/no");
 		if (conductorextra == "si" ) {
 			double id =  Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el numero de la reserva:"));
+			Inscripcion("Cliente");
 			double cobro = ren.obtenercobrofinal(id);
-			String seguroAd = JOptionPane.showInputDialog("El cobro de un condctor adicional es de: " + cobro*0.2 + "Es decir el cobro total seria de: " + (cobro*0.2+cobro*0.7) + "\nDeseea incluir un seguro adiciona responda si/no");
+			double cobroconotroconductor = cobro*0.2 + cobro;
+			String seguroAd = JOptionPane.showInputDialog("El cobro de un condctor adicional es de: " + cobro*0.2 + "Es decir el cobro total seria de: " + cobroconotroconductor + "\nDeseea incluir un seguro adiciona responda si/no");
 			if (seguroAd == "si") {
-				String seguro = JOptionPane.showInputDialog("Por favor escoja un seguro: \n Seguros Bolivar  \n Seguros Sura ");
-				int costoundiaseguro = ren.devolvercostoSeguro(seguro);
+				Collection<String> seguros = ren.mostrarSeguross();
+				StringBuilder mensaje = new StringBuilder("Por favor escoja un seguro:\n");
+			        for (String elemento : seguros) {
+			            mensaje.append(elemento).append("\n");
+			        }
+			    String seguro = JOptionPane.showInputDialog(null, mensaje.toString());
+				double costoundiaseguro = ren.devolvercostoSeguro(seguro);
 				double costototalseguro = ren.obtenercobroconseguro(id, costoundiaseguro);
-				double numerotar = Double.parseDouble(JOptionPane.showInputDialog("El costo de un dia para el seguro es de" + costoundiaseguro + "por esto el cobro total con el seguro para todos los dias es de" + costototalseguro + "Por favor ingrese el numero de su tarjeta"));
+				double numerotar = Double.parseDouble(JOptionPane.showInputDialog("El costo de un dia para el seguro es de" + costoundiaseguro + "por esto el cobro total con el seguro para todos los dias es de" + (costototalseguro+cobroconotroconductor) + "Por favor ingrese el numero de su tarjeta"));
 				String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
 				ren.cambiarestadotarjeta(numerotar);
@@ -529,14 +536,31 @@ public class control {
 		}else{
 			double id =  Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el numero de la reserva:"));
 			double cobro = ren.obtenercobrofinal(id);
-			double numerotar = Double.parseDouble(JOptionPane.showInputDialog("El costo a pagar es" + cobro + "Por favor ingrese el nuemro de su tarjeta:"));
-			String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
-			String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
-			ren.cambiarestadotarjeta(numerotar);
-			JOptionPane.showMessageDialog(inter,"Exito","Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo" , JOptionPane.INFORMATION_MESSAGE);
-			
-		}
-	}
+			String seguroAd = JOptionPane.showInputDialog("El cobro total es de:" + cobro + "\nDeseea incluir un seguro adiciona responda si/no");
+			if (seguroAd == "si") {
+				Collection<String> seguros = ren.mostrarSeguross();
+				StringBuilder mensaje = new StringBuilder("Por favor escoja un seguro:\n");
+			        for (String elemento : seguros) {
+			            mensaje.append(elemento).append("\n");
+			        }
+			    String seguro = JOptionPane.showInputDialog(null, mensaje.toString());
+				double costoundiaseguro = ren.devolvercostoSeguro(seguro) + cobro;
+				double costototalseguro = ren.obtenercobroconseguro(id, costoundiaseguro);
+				double numerotar = Double.parseDouble(JOptionPane.showInputDialog("El costo de un dia para el seguro es de" + costoundiaseguro + "por esto el cobro total con el seguro para todos los dias es de" + costototalseguro + "Por favor ingrese el numero de su tarjeta"));
+				String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
+				ren.cambiarestadotarjeta(numerotar);
+				JOptionPane.showMessageDialog(inter,"Exito","Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo" , JOptionPane.INFORMATION_MESSAGE);
+				
+			}else {
+				double numerotar = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el nuemro de su tarjeta"));
+				String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
+				ren.cambiarestadotarjeta(numerotar);
+				JOptionPane.showMessageDialog(inter,"Exito","Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo" , JOptionPane.INFORMATION_MESSAGE);
+		
+	}}
+			}
  	public void nom( ) {
 		JOptionPane.showMessageDialog(inter,  this.clien.getNombre(),"Cliente", JOptionPane.INFORMATION_MESSAGE);
 	}

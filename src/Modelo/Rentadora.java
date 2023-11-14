@@ -413,13 +413,13 @@ public class Rentadora {
 		return cobro;
 		}
 	
-	public double obtenercobroconseguro(double id, int cobroseguro) throws ParseException {
+	public double obtenercobroconseguro(double id, double costoundiaseguro) throws ParseException {
 		Reserva reserva = Reservas.get(id);
 		String fechainicio = reserva.getFechadeRecoleccion();
 		String fechafinal = reserva.getFechadeEntrega();
 		double dias = obtenerNumeroDeDiasdeunareserva(fechainicio,fechafinal);
 		double cobro = obtenercobrofinal(id);
-		double cobroconseguro = dias * cobroseguro * cobro;
+		double cobroconseguro = dias * costoundiaseguro * cobro;
 		
 		return cobroconseguro;
 	
