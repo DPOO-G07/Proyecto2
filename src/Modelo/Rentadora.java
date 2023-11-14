@@ -21,6 +21,7 @@ import java.util.Map;
 
 import logica.Cliente;
 import logica.Empleado;
+import logica.MetododePago;
 import logica.Persona;
 import logica.Proveedor;
 import logica.Reserva;
@@ -46,11 +47,13 @@ public class Rentadora {
 
 	private Map<String, Proveedor> proveedores;
 	
+	private Map<Double, MetododePago> tarjeta;
+	
 
 	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos,
-			Map<String, Proveedor> proveedores, Map<String, SeguroAdicional> seguros) {
+			Map<String, Proveedor> proveedores, Map<String, SeguroAdicional> seguros, Map<Double, MetododePago> tarjeta) {
 		this.Personas = Personas;
 		this.Sedes = Sedes;
 		this.Reservas = Reservas;
@@ -58,6 +61,7 @@ public class Rentadora {
 		this.seguros = seguros;
 		this.proveedores = proveedores;
 		this.categorias = new HashMap<String,Categoria>();
+		this.tarjeta = tarjeta;
 		
 		
 		
@@ -353,6 +357,30 @@ public class Rentadora {
 	    
 		
 	}
+	public void metododepago(){
+		double numerodeTarjeta = 10101010101019.1091;
+		String fechadeCaducidad = "2028-10-9";
+		String tipo = "MasterCard" ;
+		Boolean bloqueada = false;
+		MetododePago metodo1 = new MetododePago(numerodeTarjeta,fechadeCaducidad,tipo,bloqueada);
+		
+		double numerodeTarjeta2 = 10101089761019.1091;
+		String fechadeCaducidad2 = "2029-1-6";
+		String tipo2 = "MasterCard" ;
+		Boolean bloqueada2 = false;
+		MetododePago metodo2 = new MetododePago(numerodeTarjeta2,fechadeCaducidad2,tipo2,bloqueada2);
+		tarjeta.put(numerodeTarjeta, metodo1);
+		tarjeta.put(numerodeTarjeta2, metodo2);
+		
+		
+	}
+	public void cambiarestadotarjeta(double numero) {
+		MetododePago tarjetaa = tarjeta.get(numero);
+		tarjetaa.setBloqueada(true);
+		
+	}
+	
+	
 	public ArrayList<Double> iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega, String nombredelCliente) throws ParseException {
 		ArrayList<Double> lista = new ArrayList<Double>();
 		double id = Reservas.size() + 1;
@@ -402,7 +430,7 @@ public class Rentadora {
 	
 	//public double obtenercobrofinalcontarifaadicional() {
 		
-	public void salvar(File archivoVehiculos, File archivoSede, File archivoReservas, File archivoPersonas, File archivoPro, File archivoSeg) throws FileNotFoundException, UnsupportedEncodingException
+	public void salvar(File archivoVehiculos, File archivoSede, File archivoReservas, File archivoPersonas, File archivoPro, File archivoSeg, File archivometodo) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		OutputStream os = new FileOutputStream(archivoSede);
 		PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
@@ -533,7 +561,22 @@ public class Rentadora {
 			pw5.println(nombre + ";" +precio);
 		}
 		pw5.close();
+		OutputStream os6 = new FileOutputStream(archivometodo);
+		PrintWriter pw6 = new PrintWriter(new OutputStreamWriter(os6, "UTF-8"));
+		ArrayList<MetododePago> temp6 = new ArrayList<MetododePago> (tarjeta.values());
+		
+		for (MetododePago se : temp6)
+		{
+			String numtar = String.valueOf(se.getNumerodeTarjeta()) ;
+			String fechadecaducidad = se.getFechadeCaducidad();
+			String tipo = se.getTipo();
+			String bloqueada =  String.valueOf(se.getBloqueada());
+			
+			pw6.println(numtar + ";" + fechadecaducidad + ";" + tipo +";" + bloqueada);
+		}
+		pw6.close();
 	}
+	
 	}
 	
 	

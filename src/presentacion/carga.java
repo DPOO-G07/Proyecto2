@@ -9,6 +9,7 @@ import java.util.Map;
 import Modelo.Rentadora;
 import logica.Cliente;
 import logica.Empleado;
+import logica.MetododePago;
 import logica.Persona;
 import logica.Proveedor;
 import logica.Reserva;
@@ -22,7 +23,7 @@ import java.io.FileReader;
 
 
 public class carga {
-	public static Rentadora Leer(String personas, String sede, String reservas, String vehiculos, String pro, String seguros) {
+	public static Rentadora Leer(String personas, String sede, String reservas, String vehiculos, String pro, String seguros, String MetododePago) {
 		try {
 
 			Map <String, Persona> Personas = new HashMap<>();
@@ -31,6 +32,7 @@ public class carga {
 			Map <Integer, Vehiculo> Vehiculos = new HashMap<>();
 			Map <String, Proveedor> Proveedores = new HashMap<>();
 			Map <String, SeguroAdicional> Seguros = new HashMap<>();
+			Map <Double, MetododePago> MetododePago1 = new HashMap<>();
 			
 			BufferedReader br1 = new BufferedReader(new FileReader(sede));
 			String linea1;
@@ -183,9 +185,25 @@ public class carga {
 				
 			}
 			br5.close();
+			BufferedReader br11 = new BufferedReader(new FileReader(MetododePago));
+			String linea11;
+			while((linea11=br11.readLine()) != null) {
+				String [] partes = linea11.split(";");
+				
+				
+				double numerotar = Double.parseDouble(partes[0]);
+				String fechaVencimiento = partes[1];
+				String tipo = partes[2];
+				Boolean bloqueada = Boolean.parseBoolean(partes[3]);
+				Map<Double, MetododePago> empleadosSede = new HashMap<>();
+		
+				MetododePago tarjeya = new MetododePago(numerotar,fechaVencimiento,tipo,bloqueada);
+				MetododePago1.put(numerotar, tarjeya);
+			}
+			br11.close();
 			
 		
-			Rentadora ren = new Rentadora(Personas, Sedes, Reservas, Vehiculos, Proveedores, Seguros );
+			Rentadora ren = new Rentadora(Personas, Sedes, Reservas, Vehiculos, Proveedores, Seguros, MetododePago1 );
 			
 			return ren;
 		

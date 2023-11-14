@@ -47,7 +47,12 @@ public class MenuCliente extends JPanel {
 			
 			recoger.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				con.recoger();
+				try {
+					con.recoger();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				}
 			});
 			

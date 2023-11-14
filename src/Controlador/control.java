@@ -82,7 +82,7 @@ public class control {
 		this.menuE = new MenuEmpleado(this);
 		this.menuCl = new MenuCliente(this);
 		
-		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt");
+		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt", "data/MetododePago.txt");
 		
 	}
 	public void salvar() throws FileNotFoundException, UnsupportedEncodingException {
@@ -92,7 +92,8 @@ public class control {
 		File archivopersonas= new File("data/personas.txt");
 		File archivopro = new File("data/Proveedores.txt");
 		File archivoseg = new File("data/Seguros.txt");
-		ren.salvar(archivoVehiculos, archivoSede, archivoreservas, archivopersonas, archivopro, archivoseg);
+		File archivometodo = new File("data/MetododePago.txt");
+		ren.salvar(archivoVehiculos, archivoSede, archivoreservas, archivopersonas, archivopro, archivoseg, archivometodo);
 		
 	}
 	
@@ -490,7 +491,7 @@ public class control {
 			double numerotar =  Double.parseDouble(JOptionPane.showInputDialog("El monto que debe pagar el cual corresponde al 30% del valor es: " + cobro30 + "\nPor favor ingrese el numero de tarjeta:"));
 			String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 			String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
-			new MetododePago(numerotar,fechacaducidad,tipo);
+			new MetododePago(numerotar,fechacaducidad,tipo,false);
 			JOptionPane.showMessageDialog(inter,"Exito", "Se realizo con exito la reserva y el cobro del 30%, puede pasar el :" + fechadeRecoleccion + " a las" + horadeRecoleccion + "a la sede" + sede + "para poder recoger su carro, el numero de reserva es: "+ id, JOptionPane.INFORMATION_MESSAGE);
 			
 			
@@ -501,7 +502,7 @@ public class control {
 	
 		
 	}
-	public void recoger() {
+	public void recoger() throws ParseException {
 		String conductorextra = JOptionPane.showInputDialog("Desea añadir un conductor responda si/no");
 		if (conductorextra == "si" ) {
 			double id =  Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el numero de la reserva:"));
@@ -511,20 +512,28 @@ public class control {
 				String seguro = JOptionPane.showInputDialog("Por favor escoja un seguro: \n Seguros Bolivar  \n Seguros Sura ");
 				int costoundiaseguro = ren.devolvercostoSeguro(seguro);
 				double costototalseguro = ren.obtenercobroconseguro(id, costoundiaseguro);
-				
-				
+				double numerotar = Double.parseDouble(JOptionPane.showInputDialog("El costo de un dia para el seguro es de" + costoundiaseguro + "por esto el cobro total con el seguro para todos los dias es de" + costototalseguro + "Por favor ingrese el numero de su tarjeta"));
+				String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
+				ren.cambiarestadotarjeta(numerotar);
+				JOptionPane.showMessageDialog(inter,"Exito","Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo" , JOptionPane.INFORMATION_MESSAGE);
 				
 			}else {
-				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
-				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
-				String tipo = input("Por favor ingrese el tipo de tarjeta:");
-				new MetododePago(numerotar,fechacaducidad,tipo);
-				System.out.println("Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo");
-			}
+				double numerotar = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el nuemro de su tarjeta"));
+				String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
+				ren.cambiarestadotarjeta(numerotar);
+				JOptionPane.showMessageDialog(inter,"Exito","Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo" , JOptionPane.INFORMATION_MESSAGE);
 				
-			
-		}
-		if(conductorextra == "no") {
+				}
+		}else{
+			double id =  Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese el numero de la reserva:"));
+			double cobro = ren.obtenercobrofinal(id);
+			double numerotar = Double.parseDouble(JOptionPane.showInputDialog("El costo a pagar es" + cobro + "Por favor ingrese el nuemro de su tarjeta:"));
+			String fechacaducidad = JOptionPane.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+			String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
+			ren.cambiarestadotarjeta(numerotar);
+			JOptionPane.showMessageDialog(inter,"Exito","Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo" , JOptionPane.INFORMATION_MESSAGE);
 			
 		}
 	}
