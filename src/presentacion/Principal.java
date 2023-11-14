@@ -70,7 +70,7 @@ public class Principal {
 
 
 	private void Inicializaraplicacion() {
-		ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt");
+		ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt","data/MetododePago");
 
 
 		System.out.println("Se inicio la app");
@@ -80,16 +80,16 @@ public class Principal {
 
 		String cargo = posicion;
 		String nombre = (input("Por favor ingrese su nombre"));
-		Double cedula = Double.parseDouble(input("Por favor ingrese su cedula"));
+		double cedula = Double.parseDouble(input("Por favor ingrese su cedula"));
 		String fechadeNacimiento= (input("Por favor ingrese su fecha de nacimiento (DD/MM/YYYY"));
 		String nacionalidad = (input("Por favor ingrese su nacionalidad"));
 		String email = (input("Por favor ingrese su email"));
-		Double numero = Double.parseDouble(input("Por favor ingrese su numero"));
+		double numero = Double.parseDouble(input("Por favor ingrese su numero"));
 		String login = (input("Por favor ingrese como desea su login"));
 		String password = (input("Por favor ingrese deje a la persona ingresar su contraseña"));
 
 
-		ren.agregarPersona(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password);
+		ren.agregarPersona(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password,null);
 
 		System.out.println("Se creo exitosamente la cuenta ");
 
@@ -320,7 +320,7 @@ public class Principal {
 				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
 				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = input("Por favor ingrese el tipo de tarjeta:");
-				new MetododePago(numerotar,fechacaducidad,tipo);
+				new MetododePago(numerotar,fechacaducidad,tipo,false);
 				System.out.println("Se realizo el cobro del 30%");
 				System.out.println("su reserva de un " + categoria + " fue realizada con exito, puede pasar a recoger su vehiculo el " + fechadeRecoleccion + "a las " + horadeRecoleccion + " en la sede " + sede + " el numero de reserva es: "+ id );
 				
@@ -336,7 +336,7 @@ public class Principal {
 				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
 				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = input("Por favor ingrese el tipo de tarjeta:");
-				new MetododePago(numerotar,fechacaducidad,tipo);
+				new MetododePago(numerotar,fechacaducidad,tipo,false);
 				System.out.println("Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo");
 				
 				
@@ -348,7 +348,7 @@ public class Principal {
 				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
 				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = input("Por favor ingrese el tipo de tarjeta:");
-				new MetododePago(numerotar,fechacaducidad,tipo);
+				new MetododePago(numerotar,fechacaducidad,tipo,false);
 				System.out.println("Se realizo el cobro total y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo");
 				
 				
