@@ -192,7 +192,11 @@ public class Rentadora {
 		elcarro.setEstado(estado);
 		Vehiculos.put(id, elcarro);
 	}
-	
+	public void modificarTarifas(String cat, double tarif) {
+		Categoria lacat = categorias.get(cat);
+		lacat.setTarifaporDia(tarif);
+		categorias.put(cat, lacat);
+	}
 	public void cambiarVehiculoSede(Integer id, String sede) {
 		Vehiculo elcarro = Vehiculos.get(id);
 		String antiguaSede = elcarro.getSede();

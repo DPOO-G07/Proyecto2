@@ -17,6 +17,9 @@ public class Categoria {
 		this.nombreCategoria = nombreCategoria;
 		Categoria.listaVehiculos = listaVehiculos;
 	}
+	public void setTarifaporDia(double tarifaporDia) {
+		this.tarifaporDia = tarifaporDia;
+	}
 	public double getIddeCategoria() {
 		return iddeCategoria;
 	}

@@ -110,7 +110,7 @@ public class MenuAdministradorG extends JPanel{
 		});
 		tarifas.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
+				con.tarifas();
 				
 			}
 		});

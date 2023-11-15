@@ -102,7 +102,12 @@ public class control {
 		return menuE;
 	}
 
-
+	public void tarifas() {
+		String clase = JOptionPane.showInputDialog("Que clase de tarifa desea modificar");
+		double precio = Double.parseDouble(JOptionPane.showInputDialog("Que clase de tarifa desea modificar"));
+		ren.modificarTarifas(clase, precio);
+		
+	}
 	public void setMenuE(MenuEmpleado menuE) {
 		this.menuE = menuE;
 	}
