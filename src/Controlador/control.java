@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -14,9 +16,12 @@ import java.util.Collection;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
 
 import Modelo.Rentadora;
 import logica.Cliente;
@@ -48,6 +53,7 @@ public class control {
 	private String cargo;
 	private MenuEmpleado menuE;
 	private MenuCliente menuCl;
+	
 	
 	
 	
@@ -482,14 +488,56 @@ public class control {
 	
 
 	public void reservar() throws ParseException{
-			String categoria = JOptionPane.showInputDialog("Estas son las categorias disponibles:\n Economico \n SUV \n Pequeño \n Lujo \n Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar:");
-			String sede = JOptionPane.showInputDialog("Estas son las sedes disponibles:\n Motors Cañas \n Motors Palmas \n Motors Flora \n Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo:");
-			String fechadeRecoleccion = JOptionPane.showInputDialog("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo:");
-			String horadeRecoleccion = JOptionPane.showInputDialog("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria recoger el vehiculo:");
-			String fechadeEntrega = JOptionPane.showInputDialog("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo:");
-			String horadeEntrega = JOptionPane.showInputDialog("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo::");
-			String nombre = JOptionPane.showInputDialog("Por favor ingrese su nombre:");
-			ArrayList<Double> lista = ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
+			JFrame caushaiel = new JFrame();
+			caushaiel.setTitle("Reserva");
+			caushaiel.setSize(900,800); 
+			caushaiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			JPanel panel = new JPanel(new GridLayout(13,2,40,10));
+		
+			JTextField categoria = new JTextField("");
+			JTextField sede = new JTextField("");
+			JTextField fechadeRecoleccion = new JTextField("");
+			JTextField horadeRecoleccion = new JTextField("");
+			JTextField fechadeEntrega = new JTextField("");
+			JTextField horadeEntrega = new JTextField("");
+			JTextField nombre = new JTextField("");
+			JLabel categoriaa = new JLabel("Estas son las categorias disponibles:\n Economico \n SUV \n Pequeño \n Lujo \n Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar: ");
+			JLabel sedee = new JLabel("Estas son las sedes disponibles:\n Motors Cañas \n Motors Palmas \n Motors Flora \n Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo: ");
+			JLabel fechadeRecoleccionn = new JLabel("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo: ");
+			JLabel horadeRecoleccionn = new JLabel("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria recoger el vehiculo: ");
+			JLabel fechadeEntregaa = new JLabel("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo: ");
+			JLabel horadeEntregaa = new JLabel("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo::");
+			JLabel nombree = new JLabel("Por favor ingrese su nombre:");
+			
+			panel.add(categoriaa);
+			panel.add(categoria);
+			panel.add(sedee);
+			panel.add(sede);
+			panel.add(fechadeRecoleccionn);
+			panel.add(fechadeRecoleccion);
+			panel.add(horadeRecoleccionn);
+			panel.add(horadeRecoleccion);
+			panel.add(fechadeEntregaa);
+			panel.add(fechadeEntrega);
+			panel.add(horadeEntregaa);
+			panel.add(horadeEntrega);
+			panel.add(nombree);
+			panel.add(nombre);
+			String categoriaaa = categoria.getText();
+			String sedeee = sede.getText();
+			String fechadeRecoleccionnn = fechadeRecoleccion.getText();
+			String horadeRecoleccionnn = horadeRecoleccion.getText();
+			String fechadeEntregaaa = fechadeEntrega.getText();
+			String horadeEntregaaa = horadeEntrega.getText();
+			String nombreee = nombre.getText();
+			caushaiel.add(panel);
+			caushaiel.setVisible(true);
+			
+			
+
+			
+
+			ArrayList<Double> lista = ren.iniciarReserva(categoriaaa,sedeee,fechadeRecoleccionnn,horadeRecoleccionnn,fechadeEntregaaa,horadeEntregaaa,nombreee);
 			double cobro =lista.get(0);
 			double id = lista.get(1);
 			double cobro30 = cobro * 0.3;
