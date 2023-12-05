@@ -2,7 +2,8 @@ package Controlador;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -15,6 +16,7 @@ import java.util.Collection;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -317,27 +319,144 @@ public class control {
 	}
 	public void Inscripcion(String posicion) {
 		
-		String cargo = posicion;
-		String nombre = JOptionPane.showInputDialog("Por favor ingrese su nombre");
-		Double cedula = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su cedula"));
-		String fechadeNacimiento = JOptionPane.showInputDialog("Por favor ingrese su fecha de nacimiento (DD/MM/YYYY");
-		String nacionalidad = JOptionPane.showInputDialog("Por favor ingrese su nacionalidad");
-		String email = JOptionPane.showInputDialog("Por favor ingrese su email");
-		Double numero = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su numero"));
-		String login = JOptionPane.showInputDialog("Por favor ingrese como desea su login");
-		String password = JOptionPane.showInputDialog("Por favor ingrese deje a la persona ingresar su contraseña");
-		if(cargo.equals("Cliente")) {
-			Double licencia = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su licencia"));
-			Double metododepago = Double.parseDouble(JOptionPane.showInputDialog("Por favor ingrese su metodo de pago(numero de la tarjeta)"));
-			ren.agregarPersonaCL(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password,licencia,metododepago);
+		
+		JFrame frame = new JFrame("Inscripción");
+	    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	    frame.setSize(350,350);
+	    JPanel panel = new JPanel();
+	    
+	    frame.setLayout(new BorderLayout());
+		
+		
+		
+		if(posicion.equals("Cliente")) {
+			
+			JLabel nom = new JLabel("Nombre: ");
+			JTextField tnom = new JTextField();
+			
+			JLabel ced = new JLabel("Cedula: ");
+			JTextField tcedula = new JTextField();
+			
+			JLabel fecha = new JLabel("Fecha Nacimiento (DD/MM/YYYY): ");
+			JTextField tfecha = new JTextField();
+			
+			JLabel nac = new JLabel("Nacionalidad: ");
+			JTextField tnac = new JTextField();
+			
+			JLabel email = new JLabel("Email: ");
+			JTextField tmail = new JTextField();
+			
+			JLabel num = new JLabel("numero: ");
+			JTextField tnum = new JTextField();
+			
+			JLabel login = new JLabel("Login: ");
+			JTextField tlogin = new JTextField();
+			
+			JLabel password = new JLabel("Password: ");
+			JTextField tpassword = new JTextField();
+			
+			JLabel licencia = new JLabel("Licencia: ");
+			JTextField tlicencia = new JTextField();
+			
+			JLabel pago = new JLabel("Metodo de pago: ");
+			JTextField tpago = new JTextField();
+			
+			JButton confirmar = new JButton("Confirmar");
+			panel.add(nom);
+			panel.add(tnom);
+			panel.add(ced);
+			panel.add(tcedula);
+			panel.add(fecha);
+			panel.add(tfecha);
+			panel.add(nac);
+			panel.add(tnac);
+			panel.add(email);
+			panel.add(tmail);
+			panel.add(num);
+			panel.add(tnum);
+			panel.add(licencia);
+			panel.add(tlicencia);
+			panel.add(pago);
+			panel.add(tpago);
+			panel.add(login);
+			
+			panel.add(tlogin);
+			panel.add(password);
+			panel.add(tpassword);
+			panel.setLayout(new GridLayout(10,2 , 5, 5));
+			frame.add(panel,BorderLayout.CENTER);
+			
+			frame.add(confirmar, BorderLayout.SOUTH);
+			confirmar.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					ren.agregarPersonaCL(cargo, tnom.getText(), Double.parseDouble(tcedula.getText()), tfecha.getText(), tnac.getText(), tmail.getText(), Double.parseDouble(tnum.getText()), 
+							tlogin.getText(), tpassword.getText(),Double.parseDouble(tlicencia.getText()),Double.parseDouble(tpago.getText()));
+					JOptionPane.showMessageDialog(inter,"Exito", "Se agrego con exito a la persona", JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+			
 		}
 		else {
+			JLabel nom = new JLabel("Nombre: ");
+			JTextField tnom = new JTextField();
 			
-			String nomsede = JOptionPane.showInputDialog("Por favor ingrese la sede que hara parte");
-			ren.agregarPersona(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password, nomsede);
+			JLabel ced = new JLabel("Cedula: ");
+			JTextField tcedula = new JTextField();
+			
+			JLabel fecha = new JLabel("Fecha Nacimiento (DD/MM/YYYY): ");
+			JTextField tfecha = new JTextField();
+			
+			JLabel nac = new JLabel("Nacionalidad: ");
+			JTextField tnac = new JTextField();
+			
+			JLabel email = new JLabel("Email: ");
+			JTextField tmail = new JTextField();
+			
+			JLabel num = new JLabel("numero: ");
+			JTextField tnum = new JTextField();
+			
+			JLabel login = new JLabel("Login: ");
+			JTextField tlogin = new JTextField();
+			
+			JLabel password = new JLabel("Password: ");
+			JTextField tpassword = new JTextField();
+			
+			JLabel nomsede = new JLabel("Nombre de la Sede: ");
+			JTextField tnomsede = new JTextField();
+			
+			
+			
+			JButton confirmar = new JButton("Confirmar");
+			panel.add(nom);
+			panel.add(tnom);
+			panel.add(ced);
+			panel.add(tcedula);
+			panel.add(fecha);
+			panel.add(tfecha);
+			panel.add(nac);
+			panel.add(tnac);
+			panel.add(email);
+			panel.add(tmail);
+			panel.add(num);
+			panel.add(tnum);
+			panel.add(nomsede);
+			panel.add(tnomsede);
+			panel.add(login);
+			panel.add(tlogin);
+			panel.add(password);
+			panel.add(tpassword);
+			panel.setLayout(new GridLayout(10,2 , 5, 5));
+			frame.add(panel,BorderLayout.CENTER);
+			frame.add(confirmar, BorderLayout.SOUTH);
+			
+			
+			ren.agregarPersona(cargo, tnom.getText(), Double.parseDouble(tcedula.getText()), tfecha.getText(), tnac.getText(), tmail.getText(), Double.parseDouble(tnum.getText()), 
+					tlogin.getText(), tpassword.getText(), tnomsede.getText());
+			JOptionPane.showMessageDialog(inter,"Exito", "Se agrego con exito a la persona", JOptionPane.INFORMATION_MESSAGE);
 		}
+		frame.setLocationRelativeTo(null);
+	     frame.setVisible(true);
 		
-		JOptionPane.showMessageDialog(inter,"Exito", "Se agrego con exito a la persona", JOptionPane.INFORMATION_MESSAGE);
 	}
 	public void CambEstado() {
 		Integer idCarro = Integer.parseInt(JOptionPane.showInputDialog("Que carro esta buscando, ingrese el Id porfavor"));

@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import Controlador.control;
 
 public class MenuAdministradorL extends JPanel{
-	private JButton infoSede, vehiSede, infoClientes, nuevoEmp, nuevoClie, actualizar;
+	private JButton infoSede, vehiSede, nuevoEmp, actualizar;
 	private control con;
 
 	
@@ -31,8 +31,8 @@ public class MenuAdministradorL extends JPanel{
         gbc.fill = GridBagConstraints.HORIZONTAL; 
 
         this.infoSede = new JButton("Lista Empleados");
-        this.infoClientes = new JButton("Informacion Cliente ");
-        this.nuevoClie = new JButton("Agregar Cliente ");
+        
+       
         this.nuevoEmp = new JButton("Agregar Empleado ");
         this.vehiSede = new JButton("Lista Vehiculos Sede");
         this.actualizar = new JButton("Actualizar Estado Vehiculo ");
@@ -41,19 +41,17 @@ public class MenuAdministradorL extends JPanel{
         gbc.gridy = 0;
         this.add(infoSede, gbc);
 
+        
+
+        
+
         gbc.gridy = 1;
-        this.add(infoClientes, gbc);
-
-        gbc.gridy = 2;
-        this.add(nuevoClie, gbc);
-
-        gbc.gridy = 3;
         this.add(nuevoEmp, gbc);
 
-        gbc.gridy = 4;
+        gbc.gridy = 2;
         this.add(vehiSede, gbc);
 
-        gbc.gridy = 5;
+        gbc.gridy = 3;
         this.add(actualizar, gbc);
 		infoSede.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -62,19 +60,9 @@ public class MenuAdministradorL extends JPanel{
 			}
 		});
 		
-		infoClientes.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent e) {
-			con.infoClientes();
-			
-		}
-	});
 	
-		nuevoClie.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent e) {
-			con.nuevoCliente();
-			
-		}
-	});
+	
+		
 		nuevoEmp.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				con.nuevoEmpleado();
