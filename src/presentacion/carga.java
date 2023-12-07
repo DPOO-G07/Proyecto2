@@ -23,7 +23,7 @@ import java.io.FileReader;
 
 
 public class carga {
-	public static Rentadora Leer(String personas, String sede, String reservas, String vehiculos, String pro, String seguros, String MetododePago) {
+	public static Rentadora Leer(String personas, String sede, String reservas, String vehiculos, String pro, String seguros, String metododePago) {
 		try {
 
 			Map <String, Persona> Personas = new HashMap<>();
@@ -185,7 +185,7 @@ public class carga {
 				
 			}
 			br5.close();
-			BufferedReader br11 = new BufferedReader(new FileReader(MetododePago));
+			BufferedReader br11 = new BufferedReader(new FileReader(metododePago));
 			String linea11;
 			while((linea11=br11.readLine()) != null) {
 				String [] partes = linea11.split(";");
