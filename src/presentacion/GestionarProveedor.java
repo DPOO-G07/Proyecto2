@@ -19,7 +19,7 @@ public class GestionarProveedor extends JPanel {
 	
 	public GestionarProveedor (control con) {
 		this.con = con;
-		
+		 
 		
 		this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

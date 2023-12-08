@@ -24,7 +24,7 @@ public class Interfaz extends JFrame {
 	public MenuEmpleado empleado;
 	public MenuCliente cliente;
 	
-	
+	 
 	
 	public Interfaz(){
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);

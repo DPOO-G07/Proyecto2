@@ -16,7 +16,7 @@ public class inicio extends JPanel{
 	
 	private JTextField us,contra;
 	
-	
+	 
 	public inicio(control con) {
 		this.con = con;
 		

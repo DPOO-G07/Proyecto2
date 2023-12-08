@@ -33,7 +33,7 @@ public class carga {
 			Map <String, Proveedor> Proveedores = new HashMap<>();
 			Map <String, SeguroAdicional> Seguros = new HashMap<>();
 			Map <Double, MetododePago> MetododePago1 = new HashMap<>();
-			
+			 
 			BufferedReader br1 = new BufferedReader(new FileReader(sede));
 			String linea1;
 			while((linea1=br1.readLine()) != null) {
