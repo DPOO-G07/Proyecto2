@@ -38,7 +38,8 @@ public class inicio extends JPanel{
 		JButton bver = new JButton("Ingresar");
 		bver.setBounds(200,180,180,20);
 		JButton bvolver = new JButton("Volver al inicio");
-		bvolver.setBounds(200,180,180,20);
+		
+		bvolver.setBounds(180,220,220,20);
 		
 		
 		this.setLayout(null);
@@ -61,6 +62,12 @@ public class inicio extends JPanel{
 			}
 			
 		}});
+		bvolver.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				con.in();
+				
+			}
+	});
 		
 	
 	}

@@ -71,7 +71,7 @@ public class inicioCliente extends JPanel{
 	}
 	
 	public void ver () throws Exception {
-		con.verificar(this.us.getText(), this.contra.getText());
+		con.verificarCliente(this.us.getText(), this.contra.getText());
 		con.setUser(this.us.getText());
 	}
 	public void  nuevocliente() {

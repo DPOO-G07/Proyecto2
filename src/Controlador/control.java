@@ -41,6 +41,8 @@ import presentacion.MenuEmpleado;
 import presentacion.ModificarSede;
 import presentacion.carga;
 import presentacion.inicio;
+import presentacion.inicioCliente;
+import presentacion.inicioG;
 import presentacion.ModificarVehi;
 
 
@@ -55,6 +57,9 @@ public class control {
 	private String cargo;
 	private MenuEmpleado menuE;
 	private MenuCliente menuCl;
+	private inicioCliente inCliente;
+	private inicioG inG;
+	
 	
 	
 	
@@ -89,6 +94,10 @@ public class control {
 		this.menuadminG = new MenuAdministradorG(this);
 		this.menuE = new MenuEmpleado(this);
 		this.menuCl = new MenuCliente(this);
+		this.inCliente = new inicioCliente(this);
+		this.inG = new inicioG(this);
+		
+		
 		
 		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt", "data/MetododePago.txt");
 		
@@ -188,6 +197,15 @@ public class control {
 		else {
 			JOptionPane.showMessageDialog(inter,  "Usuario o contraseña incorrectos","Vuelva a intentarlo " , JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+	public void inicioCl () {
+		inter.inCliente();
+	}
+	public void in () {
+		inter.inGE();
+	}
+	public void inicioEmp () {
+		inter.inEmpleado();
 	}
 	public void verificarCliente (String usuario, String contra) throws Exception {
 		String cargo = ren.verificarIdentidad(usuario, contra);
@@ -762,6 +780,26 @@ public class control {
 	}
 	public void numero() {
 		JOptionPane.showMessageDialog(inter, String.valueOf(this.clien.getCelular()),"Numero", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+
+	public inicioCliente getInCliente() {
+		return inCliente;
+	}
+
+
+	public void setInCliente(inicioCliente inCliente) {
+		this.inCliente = inCliente;
+	}
+
+
+	public inicioG getInG() {
+		return inG;
+	}
+
+
+	public void setInG(inicioG inG) {
+		this.inG = inG;
 	}
 }
 
