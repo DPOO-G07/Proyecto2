@@ -161,7 +161,7 @@ public class control {
 	}
 
 
-	public void verificar (String usuario, String contra) {
+	public void verificar (String usuario, String contra) throws Exception {
 		String cargo = ren.verificarIdentidad(usuario, contra);
 
 		if (cargo.equalsIgnoreCase("Administrador Local")) {
@@ -182,14 +182,25 @@ public class control {
 
 		}
 		else if( cargo.equalsIgnoreCase("Cliente")) {
-			inter.Cliente();
+			JOptionPane.showMessageDialog(inter,  "Eres un cliente, intentaste entrar por el lugar equivocado","Cambiar de interfaz " , JOptionPane.INFORMATION_MESSAGE);
 
 		}
 		else {
 			JOptionPane.showMessageDialog(inter,  "Usuario o contraseña incorrectos","Vuelva a intentarlo " , JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+	public void verificarCliente (String usuario, String contra) throws Exception {
+		String cargo = ren.verificarIdentidad(usuario, contra);
 
+	
+		if( cargo.equalsIgnoreCase("Cliente")) {
+			inter.Cliente();
+
+		}
+		else {
+			JOptionPane.showMessageDialog(inter,  "Usuario o contraseña incorrectos","Vuelva a intentarlo "  , JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 	public void infoempleados() {
 		if (cargo.equals("Administrador General")) {
 			String sede = JOptionPane.showInputDialog("Que sede desea consultar?");

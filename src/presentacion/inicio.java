@@ -37,14 +37,14 @@ public class inicio extends JPanel{
 		
 		JButton bver = new JButton("Ingresar");
 		bver.setBounds(200,180,180,20);
+		JButton bvolver = new JButton("Volver al inicio");
+		bvolver.setBounds(200,180,180,20);
 		
-		JButton clientenuevo = new JButton("Registrarse como nuevo cliente");
-		clientenuevo.setBounds(180,220,220,20);
 		
 		this.setLayout(null);
 		
 		this.add(bver);
-		this.add(clientenuevo);
+		this.add(bvolver);
 		this.add(bienvenida);
 		this.add(contra);
 		this.add(contraseña);
@@ -53,23 +53,20 @@ public class inicio extends JPanel{
 		
 		bver.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			ver();
+			try {
+				ver();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}});
 		
-		clientenuevo.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				nuevocliente();
-				
-			}
-	});
+	
 	}
 	
-	public void ver () {
+	public void ver () throws Exception {
 		con.verificar(this.us.getText(), this.contra.getText());
 		con.setUser(this.us.getText());
-	}
-	public void  nuevocliente() {
-		con.Inscripcion("Cliente");
 	}
 }

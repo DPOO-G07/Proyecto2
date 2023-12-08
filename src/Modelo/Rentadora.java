@@ -99,19 +99,19 @@ public class Rentadora {
 		 return tarifadia;
 	}
 	
-	public String verificarIdentidad(String usuario, String Password) {
-		Persona lapersona =  Personas.get(usuario);
-		String contraseña = lapersona.getPassword();
-		String cargo = lapersona.getCargo();
-		if (contraseña.equals(Password)) {
-			return cargo;
+	public String verificarIdentidad(String usuario, String Password)throws Exception {
+		try {
+			Persona lapersona =  Personas.get(usuario);
+			String contraseña = lapersona.getPassword();
+			String cargo = lapersona.getCargo();
+			if (contraseña.equals(Password)) {
+				return cargo;
+			}
 		}
-		else 
-			return "contraseña incorrecta";
-		
-		
-		
-		
+		catch(Exception e){
+			
+		}
+		return "";
 	}
 	public Collection<String>devolverEmpleadosadmin(String sede){
 		
