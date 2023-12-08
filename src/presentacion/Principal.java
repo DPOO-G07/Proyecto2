@@ -20,7 +20,7 @@ public class Principal {
 	private Rentadora ren;
 
 
-	public void ejecutarAplicacion() throws IOException, ParseException
+	public void ejecutarAplicacion() throws Exception
 	{
 		System.out.println("Rentadora de carros \n");
 		Inicializaraplicacion();
@@ -30,7 +30,7 @@ public class Principal {
 		while (continuar == true) {
 			String user = (input("Por favor ingrese su usuario"));
 			String contraseña = (input("Por favor ingrese su contraseña"));
-			String cargo = ren.verificarIdentidad(user, contraseña);
+			String cargo = ren.verificarIdentidad(user, contraseña); 
 
 			if (cargo.equalsIgnoreCase("Administrador Local")) {
 				Menuadministradorlocal (user);
@@ -512,7 +512,7 @@ public class Principal {
 		}
 		return null;
 	}
-	public static void main(String[] args) throws IOException, ParseException
+	public static void main(String[] args) throws Exception
 	{
 		Principal consola = new Principal();
 		consola.ejecutarAplicacion();
