@@ -789,12 +789,14 @@ public class control {
 				String seguro = JOptionPane.showInputDialog(null, mensaje.toString());
 				double costoundiaseguro = ren.devolvercostoSeguro(seguro);
 				double costototalseguro = ren.obtenercobroconseguro(id, costoundiaseguro);
+				
 				double numerotar = Double
 						.parseDouble(JOptionPane.showInputDialog("El costo de un dia para el seguro es de"
 								+ costoundiaseguro + "por esto el cobro total con el seguro para todos los dias es de "
 								+ (costototalseguro + cobroconotroconductor)
 								+ " Por favor ingrese el numero de su tarjeta que utilizo para pagar la reserva:"));
 				ren.cambiarestadotarjeta(numerotar);
+				metodospago((costototalseguro + cobroconotroconductor));
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -810,6 +812,7 @@ public class control {
 						.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
 				ren.cambiarestadotarjeta(numerotar);
+				metodospago(cobroconotroconductor);
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -841,6 +844,7 @@ public class control {
 						.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
 				ren.cambiarestadotarjeta(numerotar);
+				metodospago(costototalseguro);
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -856,6 +860,7 @@ public class control {
 						.showInputDialog("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = JOptionPane.showInputDialog("Por favor ingrese el tipo de tarjeta:");
 				ren.cambiarestadotarjeta(numerotar);
+				metodospago(cobro);
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -874,7 +879,7 @@ public class control {
 											+ "Cliente: "  + nombre + "\r\n"+
 											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
 											vehiculo + " ------------- "+ cobro + "\r\n"
-											+ "Seguro" + " ------------- "+ costototalseguro + "\r\n"
+											+ "Seguro" + " ------------- "+ costoundiaseguro + "\r\n"
 											+ "Otro conductor" + " ------------- "+ cobroo + "\r\n"
 											+ "--------------------------------------------------\r\n"
 											+ "Total a pagar ----------------------- "+ (cobro+cobroo+costototalseguro)+"\r\n"+
@@ -900,9 +905,9 @@ public class control {
 											+ "Cliente: "  + nombre + "\r\n"+
 											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
 											vehiculo + " ------------- "+ cobro + "\r\n"
-											+ "Seguro" + " ------------- "+ costototalseguro + "\r\n"
+											+ "Seguro" + " ------------- "+ costoundiaseguro + "\r\n"
 											+ "--------------------------------------------------\r\n"
-											+ "Total a pagar ----------------------- "+ (cobro+costototalseguro)+"\r\n"+
+											+ "Total a pagar ----------------------- "+ (costototalseguro)+"\r\n"+
 											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
 											"Gracias por su pago!",
 											"Factura", JOptionPane.INFORMATION_MESSAGE);
