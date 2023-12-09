@@ -712,7 +712,7 @@ public class control {
 					double cobro30 = cobro * 0.3;
 					metodospago(cobro30);
 					factura(cobro30,nombreee,categoriaaa);
-					JOptionPane.showMessageDialog(caushaiel,"Se logro realizar la reserva puede pasar el " + fechadeRecoleccionnn+ " a las " + horadeRecoleccionnn + " a la sede "+ sede+". \r\nEl numero de su reserva es: " + id  , "ERROR",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(caushaiel,"Se logro realizar la reserva puede pasar el " + fechadeRecoleccionnn+ " a las " + horadeRecoleccionnn + " a la sede "+ sedeee+". \r\nEl numero de su reserva es: " + id  , "ERROR",JOptionPane.ERROR_MESSAGE);
 
 					
 					
