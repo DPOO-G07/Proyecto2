@@ -689,7 +689,7 @@ public class control {
 		JButton reservar = new JButton("reservar");
 		panel.add(reservar);
 		caushaiel.add(panel);
-		caushaiel.setVisible(true);
+		caushaiel.setVisible(true);   
 		reservar.addActionListener(new ActionListener() {
 
 			@Override
@@ -712,7 +712,7 @@ public class control {
 					double cobro30 = cobro * 0.3;
 					metodospago(cobro30);
 					factura(cobro30,nombreee,categoriaaa);
-					JOptionPane.showMessageDialog(caushaiel,"Se logro realizar la reserva puede pasar el " + fechadeRecoleccionnn+ " a las " + horadeRecoleccionnn + " en la sede "+ sede+". \r\nEl numero de su reserva es: " + id  , "ERROR",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(caushaiel,"Se logro realizar la reserva puede pasar el " + fechadeRecoleccionnn+ " a las " + horadeRecoleccionnn + " a la sede "+ sede+". \r\nEl numero de su reserva es: " + id  , "ERROR",JOptionPane.ERROR_MESSAGE);
 
 					
 					
@@ -761,7 +761,7 @@ public class control {
 	    pa.add(bpayu);
 	    pa.add(bpaypal);
 	    pa.add(bsire);
-
+ 
 	    cardPanel.add(pa, "Opciones");
 	    cardPanel.add(new Payu(this), "Payu");
 	    cardPanel.add(new Sire(this), "Sire");
