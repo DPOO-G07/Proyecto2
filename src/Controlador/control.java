@@ -567,7 +567,28 @@ public class control {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	public void tabal() {
+		Collection<String> lista = ren.fechasmasconcurridas();
+		DefaultListModel<String> listModel = new DefaultListModel<>();
+		for (String indv : lista) {
 
+			listModel.addElement(indv);
+
+		}
+		JList<String> muestraTop = new JList<>(listModel);
+		muestraTop.setFont(new Font("Arial", Font.PLAIN, 12));
+		JFrame frame = new JFrame("Lista Proveedores");
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setSize(350, 350);
+
+		JScrollPane jScrollPane = new JScrollPane(muestraTop);
+		frame.getContentPane().add(jScrollPane, BorderLayout.CENTER);
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
 	public void sede() {
 		String lasede = JOptionPane.showInputDialog("Que sede desea modificar ");
 		JFrame frame = new JFrame("Seguros");
