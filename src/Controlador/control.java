@@ -17,6 +17,7 @@ import java.util.Collection;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -562,27 +563,7 @@ public class control {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	public void tabal() {
-		Collection<String> lista = ren.fechasmasconcurridas();
-		DefaultListModel<String> listModel = new DefaultListModel<>();
-		for (String indv : lista) {
 
-			listModel.addElement(indv);
-
-		}
-		JList<String> muestraTop = new JList<>(listModel);
-		muestraTop.setFont(new Font("Arial", Font.PLAIN, 12));
-		JFrame frame = new JFrame("Fechas mas concurridas");
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(350, 350);
-
-		JScrollPane jScrollPane = new JScrollPane(muestraTop);
-		frame.getContentPane().add(jScrollPane, BorderLayout.CENTER);
-
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
 	public void sede() {
 		String lasede = JOptionPane.showInputDialog("Que sede desea modificar ");
 		JFrame frame = new JFrame("Seguros");
@@ -642,22 +623,20 @@ public class control {
 
 	public void reservar() throws ParseException {
 		JFrame caushaiel = new JFrame();
-		caushaiel.setTitle("Reserva");
+		caushaiel.setTitle("Reserva"); 
 		caushaiel.setSize(900, 800);
 		caushaiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel(new GridLayout(13, 2, 40, 10));
 
-		JTextField categoria = new JTextField("");
-		JTextField sede = new JTextField("");
+		JLabel categoria = new JLabel("Por favor seleccione el tipo de vehiculo que le gustaria");
+		JLabel sede = new JLabel("Por favor seleccion la sede en la cual le gustaria recoger el vehiculo:");
 		JTextField fechadeRecoleccion = new JTextField("");
 		JTextField horadeRecoleccion = new JTextField("");
 		JTextField fechadeEntrega = new JTextField("");
 		JTextField horadeEntrega = new JTextField("");
 		JTextField nombre = new JTextField("");
-		JLabel categoriaa = new JLabel(
-				"Estas son las categorias disponibles:\n Economico \n SUV \n Pequeño \n Lujo \n Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar: ");
-		JLabel sedee = new JLabel(
-				"Estas son las sedes disponibles:\n Motors Cañas \n Motors Palmas \n Motors Flora \n Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo: ");
+		JComboBox<String> categoriaa = new JComboBox<>(new String[]{ "SUV", "Pequeño", "Lujo", "Economico" });
+		JComboBox<String> sedee = new JComboBox<>(new String[]{ "Motors Cañas", "Motors Palmas", "Motors Flora", "Economico" });
 		JLabel fechadeRecoleccionn = new JLabel(
 				"Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo: ");
 		JLabel horadeRecoleccionn = new JLabel(
@@ -668,10 +647,10 @@ public class control {
 				"Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo::");
 		JLabel nombree = new JLabel("Por favor ingrese su nombre:");
 
-		panel.add(categoriaa); 
-		panel.add(categoria);
-		panel.add(sedee);
+		panel.add(categoria); 
+		panel.add(categoriaa);
 		panel.add(sede);
+		panel.add(sedee);
 		panel.add(fechadeRecoleccionn);
 		panel.add(fechadeRecoleccion);
 		panel.add(horadeRecoleccionn);
@@ -690,10 +669,10 @@ public class control {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Double> lista;
+				ArrayList<Double> lista;   
 				try {
-					String categoriaaa = categoria.getText();
-					String sedeee = sede.getText();
+					String categoriaaa = (String) categoriaa.getSelectedItem();
+					String sedeee = (String)sedee.getSelectedItem();
 					String fechadeRecoleccionnn = fechadeRecoleccion.getText();
 					String horadeRecoleccionnn = horadeRecoleccion.getText();
 					String fechadeEntregaaa = fechadeEntrega.getText();
@@ -744,7 +723,8 @@ public class control {
 						
 						
 
-					}); 
+					});  
+					
 					
 
 				} catch (ParseException e1) {
