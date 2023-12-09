@@ -745,6 +745,7 @@ public class control {
 	public void recoger() throws ParseException {
 		String conductorextra = JOptionPane.showInputDialog("Desea añadir un conductor responda si/no");
 		if ("si".equals(conductorextra)) {
+			
 			double id = Double.parseDouble(JOptionPane.showInputDialog(
 					"Por favor ingrese el numero de la reserva y a continuacion se le pediran los datos para el otro conductor :"));
 			Inscripcion("Cliente");
