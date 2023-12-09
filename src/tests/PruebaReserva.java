@@ -21,12 +21,12 @@ import static org.junit.Assert.*;
 	    public void testReservaConstructorAndGetterMethods() {
 	        // Arrange
 	        Double numerodeReserva = 1.0;
-	        String tipodeVehiculo = "Sedan";
-	        String sede = "Sede1";
+	        String tipodeVehiculo = "SUV";
+	        String sede = "Motors Caña";
 	        String fechadeRecoleccion = "2023-01-01";
-	        String horadeRecoleccion = "10:00 AM";
+	        String horadeRecoleccion = "10:00";
 	        String fechadeEntrega = "2023-01-02";
-	        String horadeEntrega = "12:00 PM";
+	        String horadeEntrega = "12:00";
 	        Double cobro = 150.0;
 	        String nomcliente = "John Doe";
 	        String estado = "Reservado";

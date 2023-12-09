@@ -353,7 +353,7 @@ public class Rentadora {
 		Sede nomsede = Sedes.get(sede);
 		
 		nomsede.setAdministradordeSede(nuevoadmin);
-		Sedes.put(sede, nomsede);
+		Sedes.put(sede, nomsede); 
 	}
 	public void agregarVehiculo(String sede,int id, Vehiculo elvehiculo) {
 		Sede lasede = Sedes.get(sede);
@@ -443,6 +443,19 @@ public class Rentadora {
 		cobro = cobro*0.7;
 		return cobro;
 		}
+	public String obtenernombre(double id) {
+		Reserva reserva = Reservas.get(id);
+		String nombre = reserva.getNomcliente();
+		return nombre;
+		
+	}
+	public String obtenervehiculo(double id) {
+		Reserva reserva = Reservas.get(id);
+		String nombre = reserva.getTipodeVehiculo();
+		return nombre;
+		
+	}
+	
 	
 	public double obtenercobroconseguro(double id, double costoundiaseguro) throws ParseException {
 		Reserva reserva = Reservas.get(id);
@@ -497,7 +510,7 @@ public class Rentadora {
 		PrintWriter pw1 = new PrintWriter(new OutputStreamWriter(os1, "UTF-8"));
 		ArrayList<Vehiculo> temp1 = new ArrayList<Vehiculo> (Vehiculos.values());
 	
-		
+		 
 		for (Vehiculo se : temp1)
 		{
 			String id = String.valueOf(se.getId());

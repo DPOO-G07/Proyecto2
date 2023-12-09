@@ -71,7 +71,7 @@ public class MenuEmpleado extends JPanel{
 				con.vehiculoSede();
 				
 			}
-		});
+		}); 
 		porfechas.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				con.tabal();

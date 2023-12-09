@@ -1,7 +1,6 @@
 package Controlador;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,7 @@ import java.util.Collection;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -44,11 +44,7 @@ import presentacion.carga;
 import presentacion.inicio;
 import presentacion.inicioCliente;
 import presentacion.inicioG;
-import presentacion.tipoPago;
 import presentacion.ModificarVehi;
-import presentacion.Paypal;
-import presentacion.Payu;
-import presentacion.Sire;
 
 public class control {
 	private inicio primera;
@@ -89,7 +85,6 @@ public class control {
 		this.menuCl = new MenuCliente(this);
 		this.inCliente = new inicioCliente(this);
 		this.inG = new inicioG(this);
-		
 
 		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt",
 				"data/Proveedores.txt", "data/Seguros.txt", "data/MetododePago.txt");
@@ -568,27 +563,7 @@ public class control {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	public void tabal() {
-		Collection<String> lista = ren.fechasmasconcurridas();
-		DefaultListModel<String> listModel = new DefaultListModel<>();
-		for (String indv : lista) {
 
-			listModel.addElement(indv);
-
-		}
-		JList<String> muestraTop = new JList<>(listModel);
-		muestraTop.setFont(new Font("Arial", Font.PLAIN, 12));
-		JFrame frame = new JFrame("Fechas mas concurridas");
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(350, 350);
-
-		JScrollPane jScrollPane = new JScrollPane(muestraTop);
-		frame.getContentPane().add(jScrollPane, BorderLayout.CENTER);
-
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
 	public void sede() {
 		String lasede = JOptionPane.showInputDialog("Que sede desea modificar ");
 		JFrame frame = new JFrame("Seguros");
@@ -648,22 +623,20 @@ public class control {
 
 	public void reservar() throws ParseException {
 		JFrame caushaiel = new JFrame();
-		caushaiel.setTitle("Reserva");
+		caushaiel.setTitle("Reserva"); 
 		caushaiel.setSize(900, 800);
-		caushaiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		caushaiel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel(new GridLayout(13, 2, 40, 10));
 
-		JTextField categoria = new JTextField("");
-		JTextField sede = new JTextField("");
+		JLabel categoria = new JLabel("Por favor seleccione el tipo de vehiculo que le gustaria");
+		JLabel sede = new JLabel("Por favor seleccion la sede en la cual le gustaria recoger el vehiculo:");
 		JTextField fechadeRecoleccion = new JTextField("");
 		JTextField horadeRecoleccion = new JTextField("");
 		JTextField fechadeEntrega = new JTextField("");
 		JTextField horadeEntrega = new JTextField("");
 		JTextField nombre = new JTextField("");
-		JLabel categoriaa = new JLabel(
-				"Estas son las categorias disponibles:\n Economico \n SUV \n Pequeño \n Lujo \n Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar: ");
-		JLabel sedee = new JLabel(
-				"Estas son las sedes disponibles:\n Motors Cañas \n Motors Palmas \n Motors Flora \n Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo: ");
+		JComboBox<String> categoriaa = new JComboBox<>(new String[]{ "SUV", "Pequeño", "Lujo", "Economico" });
+		JComboBox<String> sedee = new JComboBox<>(new String[]{ "Motors Cañas", "Motors Palmas", "Motors Flora", "Economico" });
 		JLabel fechadeRecoleccionn = new JLabel(
 				"Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo: ");
 		JLabel horadeRecoleccionn = new JLabel(
@@ -674,10 +647,10 @@ public class control {
 				"Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo::");
 		JLabel nombree = new JLabel("Por favor ingrese su nombre:");
 
-		panel.add(categoriaa); 
-		panel.add(categoria);
-		panel.add(sedee);
+		panel.add(categoria); 
+		panel.add(categoriaa);
 		panel.add(sede);
+		panel.add(sedee);
 		panel.add(fechadeRecoleccionn);
 		panel.add(fechadeRecoleccion);
 		panel.add(horadeRecoleccionn);
@@ -696,10 +669,10 @@ public class control {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Double> lista;
+				ArrayList<Double> lista;   
 				try {
-					String categoriaaa = categoria.getText();
-					String sedeee = sede.getText();
+					String categoriaaa = (String) categoriaa.getSelectedItem();
+					String sedeee = (String)sedee.getSelectedItem();
 					String fechadeRecoleccionnn = fechadeRecoleccion.getText();
 					String horadeRecoleccionnn = horadeRecoleccion.getText();
 					String fechadeEntregaaa = fechadeEntrega.getText();
@@ -707,14 +680,55 @@ public class control {
 					String nombreee = nombre.getText();
 					lista = ren.iniciarReserva(categoriaaa, sedeee, fechadeRecoleccionnn, horadeRecoleccionnn,
 							fechadeEntregaaa, horadeEntregaaa, nombreee);
-					
-					
 					double cobro = lista.get(0);
 					double id = lista.get(1);
 					double cobro30 = cobro * 0.3;
-					metodospago(cobro30);
+					JFrame master = new JFrame(); 
+					master.setTitle("Pago");
+					master.setSize(900, 800);
+					master.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					JPanel panell = new JPanel(new GridLayout(10, 2, 40, 10));
+					JTextField numerotar = new JTextField("");
+					JTextField fechacaducidad = new JTextField("");
+					JTextField tipo = new JTextField("");
+					JLabel numerotarr = new JLabel("El monto que debe pagar el cual corresponde al 30% del valor es: "
+							+ cobro30 + "\nPor favor ingrese el numero de tarjeta:");
+					JLabel fechacaducidadd = new JLabel(
+							"Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+					JLabel tipoo = new JLabel("Por favor ingrese el tipo de tarjeta:");
+					JButton pagar = new JButton("pagar");
+					panell.add(numerotarr);
+					panell.add(numerotar);
+					panell.add(fechacaducidadd);
+					panell.add(fechacaducidad);
+					panell.add(tipoo);
+					panell.add(tipo);
+					panell.add(pagar);
+					master.add(panell);
+					master.setVisible(true);
+					pagar.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							double numerotarrrr = Double.parseDouble(numerotar.getText());
+							String fechacaducidadddd = fechacaducidad.getText();
+							String tipoooo = tipo.getText();
+							new MetododePago(numerotarrrr, fechacaducidadddd, tipoooo, false);
+							JOptionPane.showMessageDialog(inter,
+									"Se realizo con exito la reserva y el cobro del 30%, puede pasar el : "
+											+ fechadeRecoleccionnn + " a las" + horadeRecoleccionnn + " a la sede " + sedeee
+											+ " para poder recoger su carro, el numero de reserva es: " + id,
+									"Exito", JOptionPane.INFORMATION_MESSAGE);
+							factura(cobro30,nombreee,categoriaaa);
+						}
+						
+						
+
+					});  
 					
-						} catch (ParseException e1) {
+					
+
+				} catch (ParseException e1) {
 					JOptionPane.showMessageDialog(caushaiel,"No se logro realizar la reserva ingrese los datos nuevamente", "ERROR",JOptionPane.ERROR_MESSAGE);
 					
 					// TODO Auto-generated catch block
@@ -726,64 +740,6 @@ public class control {
 
 		
 
-	}
-	public void pagar(String numerotar, String fechacaducidad, String tipo) {
-		double numerotarrrr = Double.parseDouble(numerotar);
-		String fechacaducidadddd = fechacaducidad;
-		String tipoooo = tipo;
-		new MetododePago(numerotarrrr, fechacaducidadddd, tipoooo, false);
-		
-	}
-	
-	
-
-	
-		
-	public void metodospago(double cobro30) {
-		JFrame master = new JFrame();
-	    master.setTitle("El monto que debe (30%) es: " + cobro30);
-	    master.setSize(300, 300);
-
-	    CardLayout cardLayout = new CardLayout();
-	    JPanel cardPanel = new JPanel(cardLayout);
-
-	    master.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	    JPanel pa = new JPanel();
-	    JButton bpayu = new JButton("Payu");
-	    JButton bpaypal = new JButton("PayPal");
-	    JButton bsire = new JButton("Sire");
-
-	    pa.setLayout(new GridLayout(1, 3, 10, 10));
-	    pa.add(bpayu);
-	    pa.add(bpaypal);
-	    pa.add(bsire);
-
-	    cardPanel.add(pa, "Opciones");
-	    cardPanel.add(new Payu(this), "Payu");
-	    cardPanel.add(new Sire(this), "Sire");
-	    cardPanel.add(new Paypal(this), "Paypal");
-
-	    master.setLayout(new BorderLayout());
-	    master.add(cardPanel, BorderLayout.CENTER);
-	    master.setLocationRelativeTo(null);
-
-	    bpayu.addActionListener(e -> {
-	        cardLayout.show(cardPanel, "Payu");
-	        master.setSize(500, 500);
-	    });
-
-	    bpaypal.addActionListener(e -> {
-	        cardLayout.show(cardPanel, "Paypal");
-	        master.setSize(500, 500);
-	    });
-
-	    bsire.addActionListener(e -> {
-	        cardLayout.show(cardPanel, "Sire");
-	        master.setSize(500, 500);
-	    });
-
-	    master.setVisible(true);
 	}
 
 	public void recoger() throws ParseException {
@@ -815,6 +771,10 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,costoundiaseguro,costototalseguro,cobroconotroconductor,cobro,true,true);
+			
 
 			} else {
 				double numerotar = Double
@@ -826,6 +786,10 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,0,0,cobroconotroconductor,cobro,false,true);
+
 
 			}
 		} else {
@@ -853,6 +817,10 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,costoundiaseguro,costototalseguro,0,cobro,false,true);
+
 
 			} else {
 				double numerotar = Double
@@ -864,10 +832,83 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,0,0,0,cobro,false,true);
 
 			}
 		}
 	}
+	private void facturaseguroyconductorextra(String nombre, String vehiculo ,double costoundiaseguro, double costototalseguro,double cobroconotroconductor,double cobro,boolean miau, boolean meow) {
+		if (miau ==true&& meow==true)
+		{	double cobroo = cobro*0.2;
+			JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+		
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "Seguro" + " ------------- "+ costototalseguro + "\r\n"
+											+ "Otro conductor" + " ------------- "+ cobroo + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro+cobroo+costototalseguro)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+			}else if (miau ==false&& meow==true) {
+				double cobroo = cobro*0.2;
+				JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+						
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "Otro conductor" + " ------------- "+ cobroo + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro+cobroo)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+			}else if (miau ==true&& meow==false) {
+				JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+						
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "Seguro" + " ------------- "+ costototalseguro + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro+costototalseguro)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+				
+						
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+					}
+
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void factura(double cobro30, String nombre, String vehiculo ) {
+		JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+											+ "Cliente: "  + nombre + "\r\n"+
+											 "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+										    vehiculo + " ------------- "+cobro30+ "\r\n"
+										   + "--------------------------------------------------\r\n"
+										   + "Total a pagar ----------------------- "+ cobro30+"\r\n"+
+										   "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+										   "Gracias por su pago!",
+										   "Factura", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 
 	public void nom() {
 		JOptionPane.showMessageDialog(inter, this.clien.getNombre(), "Cliente", JOptionPane.INFORMATION_MESSAGE);

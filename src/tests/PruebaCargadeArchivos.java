@@ -26,7 +26,7 @@ class PruebaCargadeArchivos {
 	public void carga2() {
 		Rentadora rentadora = carga.Leer("data/persona.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt","data/Proveedores.txt","data/Seguros.txt","data/MetododePago.txt");	
 		assertNull(rentadora);
-	}
+	} 
 
 
 }
