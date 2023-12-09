@@ -625,7 +625,7 @@ public class control {
 		JFrame caushaiel = new JFrame();
 		caushaiel.setTitle("Reserva"); 
 		caushaiel.setSize(900, 800);
-		caushaiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		caushaiel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel(new GridLayout(13, 2, 40, 10));
 
 		JLabel categoria = new JLabel("Por favor seleccione el tipo de vehiculo que le gustaria");
@@ -686,7 +686,7 @@ public class control {
 					JFrame master = new JFrame(); 
 					master.setTitle("Pago");
 					master.setSize(900, 800);
-					master.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					master.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					JPanel panell = new JPanel(new GridLayout(10, 2, 40, 10));
 					JTextField numerotar = new JTextField("");
 					JTextField fechacaducidad = new JTextField("");
@@ -709,6 +709,7 @@ public class control {
 					pagar.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
+							
 							double numerotarrrr = Double.parseDouble(numerotar.getText());
 							String fechacaducidadddd = fechacaducidad.getText();
 							String tipoooo = tipo.getText();
@@ -718,7 +719,7 @@ public class control {
 											+ fechadeRecoleccionnn + " a las" + horadeRecoleccionnn + " a la sede " + sedeee
 											+ " para poder recoger su carro, el numero de reserva es: " + id,
 									"Exito", JOptionPane.INFORMATION_MESSAGE);
-
+							factura(cobro30,nombreee,categoriaaa);
 						}
 						
 						
@@ -823,6 +824,18 @@ public class control {
 			}
 		}
 	}
+	public void factura(double cobro30, String nombre, String vehiculo ) {
+		JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+											+ "Cliente: "  + nombre + "\r\n"+
+											 "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+										    vehiculo + " ------------- "+cobro30+ "\r\n"
+										   + "--------------------------------------------------\r\n"
+										   + "Total a pagar ----------------------- "+ cobro30+"\r\n"+
+										   "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+										   "Gracias por su pago!",
+										   "Factura", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 
 	public void nom() {
 		JOptionPane.showMessageDialog(inter, this.clien.getNombre(), "Cliente", JOptionPane.INFORMATION_MESSAGE);
