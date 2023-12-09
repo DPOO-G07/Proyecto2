@@ -771,6 +771,10 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,costoundiaseguro,costototalseguro,cobroconotroconductor,cobro,true,true);
+			
 
 			} else {
 				double numerotar = Double
@@ -782,6 +786,10 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,0,0,cobroconotroconductor,cobro,false,true);
+
 
 			}
 		} else {
@@ -809,6 +817,10 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,costoundiaseguro,costototalseguro,0,cobro,false,true);
+
 
 			} else {
 				double numerotar = Double
@@ -820,10 +832,71 @@ public class control {
 				JOptionPane.showMessageDialog(inter,
 						"Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo",
 						"Exito", JOptionPane.INFORMATION_MESSAGE);
+				String nombre = ren.obtenernombre(id);
+				String vehiculo = ren.obtenervehiculo(id);
+				facturaseguroyconductorextra(nombre,vehiculo,0,0,0,cobro,false,true);
 
 			}
 		}
 	}
+	private void facturaseguroyconductorextra(String nombre, String vehiculo ,double costoundiaseguro, double costototalseguro,double cobroconotroconductor,double cobro,boolean miau, boolean meow) {
+		if (miau ==true&& meow==true)
+		{	double cobroo = cobro*0.2;
+			JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+		
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "Seguro" + " ------------- "+ costototalseguro + "\r\n"
+											+ "Otro conductor" + " ------------- "+ cobroo + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro+cobroo+costototalseguro)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+			}else if (miau ==false&& meow==true) {
+				double cobroo = cobro*0.2;
+				JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+						
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "Otro conductor" + " ------------- "+ cobroo + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro+cobroo)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+			}else if (miau ==true&& meow==false) {
+				JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+						
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "Seguro" + " ------------- "+ costototalseguro + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro+costototalseguro)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
+				
+						
+											+ "Cliente: "  + nombre + "\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											vehiculo + " ------------- "+ cobro + "\r\n"
+											+ "--------------------------------------------------\r\n"
+											+ "Total a pagar ----------------------- "+ (cobro)+"\r\n"+
+											"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\r\n"+
+											"Gracias por su pago!",
+											"Factura", JOptionPane.INFORMATION_MESSAGE);
+					}
+
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void factura(double cobro30, String nombre, String vehiculo ) {
 		JOptionPane.showMessageDialog(inter, "-----------------------Factura-----------------------\r\n"
 											+ "Cliente: "  + nombre + "\r\n"+
