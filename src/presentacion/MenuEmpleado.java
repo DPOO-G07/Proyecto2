@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import Controlador.control;
 
 public class MenuEmpleado extends JPanel{
-	private JButton  vehiSede, infoClientes, nuevoClie;
+	private JButton  vehiSede, infoClientes, nuevoClie, porfechas;
 	private control con;
 
 	
@@ -31,7 +31,7 @@ public class MenuEmpleado extends JPanel{
 		this.nuevoClie = new JButton("Agregar Cliente ");
 		
 		this.vehiSede = new JButton("Lista Vehiculos Sede");
-		
+		this.porfechas = new JButton("Fechas Concurridas");
 		
 	
 	
@@ -46,6 +46,9 @@ public class MenuEmpleado extends JPanel{
 
 	        gbc.gridy = 2;
 	        this.add(nuevoClie, gbc);
+	        gbc.gridy = 3;
+	        this.add(porfechas, gbc);
+	        
 		
 		
 		
@@ -69,7 +72,12 @@ public class MenuEmpleado extends JPanel{
 				
 			}
 		});
-		
+		porfechas.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				con.tabal();
+				
+			}
+		});
 		
 		}
 		

@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -23,6 +25,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 
 import Modelo.Rentadora;
@@ -44,6 +47,7 @@ import presentacion.inicio;
 import presentacion.inicioCliente;
 import presentacion.inicioG;
 import presentacion.ModificarVehi;
+
 
 
 public class control {
@@ -801,10 +805,37 @@ public class control {
 	public void setInG(inicioG inG) {
 		this.inG = inG;
 	}
+
+
+	
+	public void tabal() {
+		
+		Collection <String> lista = ren.fechasmasconcurridas();
+		JOptionPane.showMessageDialog(inter, "Organizado de mayor a menor","Fechas concurridas", JOptionPane.INFORMATION_MESSAGE);
+		DefaultListModel<String> listModel = new DefaultListModel<>();
+		
+		for (String indv: lista) {
+			
+			listModel.addElement( indv);
+			
+		
+		}
+		JList<String> muestraTop = new JList<>(listModel);
+		muestraTop.setFont(new Font("Arial", Font.PLAIN, 12));
+	     JFrame frame = new JFrame("Top de las fechas mas concurridas ");
+	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	     frame.setSize(350,350);
+
+	     JScrollPane jScrollPane = new JScrollPane(muestraTop);
+	     frame.getContentPane().add(jScrollPane, BorderLayout.CENTER);
+
+	     frame.pack();
+	     frame.setLocationRelativeTo(null);
+	     frame.setVisible(true);
+	}
+	
+	
 }
-
-
-
 
 
 
