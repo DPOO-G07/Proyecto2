@@ -1,3 +1,10 @@
 1.0;pequeños;motorspalmas;16/10/2023;8AM;17/10/2023;9AM;100000.0;hector ostos;activo
 2.0;SUV;motorscañas;18/10/2023;10AM;19/10/2023;11AM;110000.0;hector tomas;activo
+4.0;SUV;Motors Cañas;2023-10-11;10:00;2021-10-20;10:00;-7.21E8;Samara;disponible
+8.0;SUV;Motors Cañas;2023-10-11;10:00;2023-10-20;10:00;9000000.0;samara;disponible
+9.0;SUV;Motors Cañas;2023-10-11;10:00;2023-10-20;10:00;9000000.0;samara;disponible
+5.0;SUV;Motors Cañas;2023-10-11;10:00;2021-10-20;10:00;-7.21E8;Samara;disponible
+10.0;SUV;Motors Cañas;2023-10-20;10:00;2023-10-11;10:00;-9000000.0;SAMARA;disponible
 3.0;Lujo;motorsflora;20/10/2023;4PM;21/10/2023;4PM;120000.0;hector samara;activo
+6.0;SUV;Motors Cañas;2023-10-11;10:00;2023-10-20;10:00;9000000.0;samara;disponible
+7.0;SUV;Motors Cañas;2023-10-11;10:00;2023-10-20;10:00;9000000.0;samara;disponible

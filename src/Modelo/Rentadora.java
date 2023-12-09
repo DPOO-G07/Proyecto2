@@ -399,7 +399,7 @@ public class Rentadora {
 		lista.add(id);
 		return lista;
 		
-	}
+	} 
 
 	
 	private double obtenerNumeroDeDiasdeunareserva(String fechadeRecoleccion, String fechadeEntrega) throws ParseException {
