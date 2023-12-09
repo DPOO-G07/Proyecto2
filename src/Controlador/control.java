@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +44,11 @@ import presentacion.carga;
 import presentacion.inicio;
 import presentacion.inicioCliente;
 import presentacion.inicioG;
+import presentacion.tipoPago;
 import presentacion.ModificarVehi;
+import presentacion.Paypal;
+import presentacion.Payu;
+import presentacion.Sire;
 
 public class control {
 	private inicio primera;
@@ -84,6 +89,7 @@ public class control {
 		this.menuCl = new MenuCliente(this);
 		this.inCliente = new inicioCliente(this);
 		this.inG = new inicioG(this);
+		
 
 		this.ren = carga.Leer("data/personas.txt", "data/sede.txt", "data/reserva.txt", "data/vehiculos.txt",
 				"data/Proveedores.txt", "data/Seguros.txt", "data/MetododePago.txt");
@@ -701,53 +707,14 @@ public class control {
 					String nombreee = nombre.getText();
 					lista = ren.iniciarReserva(categoriaaa, sedeee, fechadeRecoleccionnn, horadeRecoleccionnn,
 							fechadeEntregaaa, horadeEntregaaa, nombreee);
+					
+					
 					double cobro = lista.get(0);
 					double id = lista.get(1);
 					double cobro30 = cobro * 0.3;
-					JFrame master = new JFrame(); 
-					master.setTitle("Pago");
-					master.setSize(900, 800);
-					master.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					JPanel panell = new JPanel(new GridLayout(10, 2, 40, 10));
-					JTextField numerotar = new JTextField("");
-					JTextField fechacaducidad = new JTextField("");
-					JTextField tipo = new JTextField("");
-					JLabel numerotarr = new JLabel("El monto que debe pagar el cual corresponde al 30% del valor es: "
-							+ cobro30 + "\nPor favor ingrese el numero de tarjeta:");
-					JLabel fechacaducidadd = new JLabel(
-							"Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
-					JLabel tipoo = new JLabel("Por favor ingrese el tipo de tarjeta:");
-					JButton pagar = new JButton("pagar");
-					panell.add(numerotarr);
-					panell.add(numerotar);
-					panell.add(fechacaducidadd);
-					panell.add(fechacaducidad);
-					panell.add(tipoo);
-					panell.add(tipo);
-					panell.add(pagar);
-					master.add(panell);
-					master.setVisible(true);
-					pagar.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							double numerotarrrr = Double.parseDouble(numerotar.getText());
-							String fechacaducidadddd = fechacaducidad.getText();
-							String tipoooo = tipo.getText();
-							new MetododePago(numerotarrrr, fechacaducidadddd, tipoooo, false);
-							JOptionPane.showMessageDialog(inter,
-									"Se realizo con exito la reserva y el cobro del 30%, puede pasar el : "
-											+ fechadeRecoleccionnn + " a las" + horadeRecoleccionnn + " a la sede " + sedeee
-											+ " para poder recoger su carro, el numero de reserva es: " + id,
-									"Exito", JOptionPane.INFORMATION_MESSAGE);
-
-						}
-						
-						
-
-					}); 
+					metodospago(cobro30);
 					
-
-				} catch (ParseException e1) {
+						} catch (ParseException e1) {
 					JOptionPane.showMessageDialog(caushaiel,"No se logro realizar la reserva ingrese los datos nuevamente", "ERROR",JOptionPane.ERROR_MESSAGE);
 					
 					// TODO Auto-generated catch block
@@ -759,6 +726,64 @@ public class control {
 
 		
 
+	}
+	public void pagar(String numerotar, String fechacaducidad, String tipo) {
+		double numerotarrrr = Double.parseDouble(numerotar);
+		String fechacaducidadddd = fechacaducidad;
+		String tipoooo = tipo;
+		new MetododePago(numerotarrrr, fechacaducidadddd, tipoooo, false);
+		
+	}
+	
+	
+
+	
+		
+	public void metodospago(double cobro30) {
+		JFrame master = new JFrame();
+	    master.setTitle("El monto que debe (30%) es: " + cobro30);
+	    master.setSize(300, 300);
+
+	    CardLayout cardLayout = new CardLayout();
+	    JPanel cardPanel = new JPanel(cardLayout);
+
+	    master.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	    JPanel pa = new JPanel();
+	    JButton bpayu = new JButton("Payu");
+	    JButton bpaypal = new JButton("PayPal");
+	    JButton bsire = new JButton("Sire");
+
+	    pa.setLayout(new GridLayout(1, 3, 10, 10));
+	    pa.add(bpayu);
+	    pa.add(bpaypal);
+	    pa.add(bsire);
+
+	    cardPanel.add(pa, "Opciones");
+	    cardPanel.add(new Payu(this), "Payu");
+	    cardPanel.add(new Sire(this), "Sire");
+	    cardPanel.add(new Paypal(this), "Paypal");
+
+	    master.setLayout(new BorderLayout());
+	    master.add(cardPanel, BorderLayout.CENTER);
+	    master.setLocationRelativeTo(null);
+
+	    bpayu.addActionListener(e -> {
+	        cardLayout.show(cardPanel, "Payu");
+	        master.setSize(500, 500);
+	    });
+
+	    bpaypal.addActionListener(e -> {
+	        cardLayout.show(cardPanel, "Paypal");
+	        master.setSize(500, 500);
+	    });
+
+	    bsire.addActionListener(e -> {
+	        cardLayout.show(cardPanel, "Sire");
+	        master.setSize(500, 500);
+	    });
+
+	    master.setVisible(true);
 	}
 
 	public void recoger() throws ParseException {

@@ -85,9 +85,7 @@ public class Interfaz extends JFrame {
 		
 	}
 	public void inGE() {
-		this.cardLayout.show(cardPanel,"Inicio");
-		this.setSize(300,300);
-		this.setLocationRelativeTo(null);
+		
 	}
 	public void adminGeneral() {
 		this.cardLayout.show(cardPanel, "Administrador General");
