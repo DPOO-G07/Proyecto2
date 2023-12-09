@@ -18,7 +18,7 @@ public class Paypal extends JPanel{
 	private control con;
 	public Paypal(control con){
 		this.con = con;
-	JLabel plat = new JLabel("Payu");
+	JLabel plat = new JLabel("PayPal");
 	JTextField tipopago = new JTextField("");
 	
 	JTextField numerotar = new JTextField("");
