@@ -648,7 +648,7 @@ public class control {
 				"Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo::");
 		JLabel nombree = new JLabel("Por favor ingrese su nombre:");
 
-		panel.add(categoriaa);
+		panel.add(categoriaa); 
 		panel.add(categoria);
 		panel.add(sedee);
 		panel.add(sede);
@@ -724,7 +724,7 @@ public class control {
 						
 						
 
-					});
+					}); 
 					
 
 				} catch (ParseException e1) {
