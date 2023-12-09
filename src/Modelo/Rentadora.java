@@ -270,6 +270,31 @@ public class Rentadora {
 		}
 		return lista;
 	}
+	public Collection <String> fechasmasconcurridas() {
+		Collection<String> lista= new ArrayList();
+		
+		Map<String, Integer> mapa = porFecha();
+		for (int i = 1; i <=this.Reservas.size(); i++) {
+		    String max = Mayor(mapa);
+		    lista.add( i +". " + max);
+		    mapa.remove(max);
+		}
+		return lista;
+		
+	}
+	private String Mayor(Map<String, Integer> mapa) {
+        Integer x = Integer.MIN_VALUE;  // Inicializar con el valor mínimo posible
+        String nom = "";
+        
+        for (String fecha : mapa.keySet()) {
+            Integer ente = mapa.get(fecha);
+            if (ente > x) {
+                x = ente;
+                nom = fecha;
+            }
+        }
+        return nom;
+	}
 	public Collection<String> mostrarSeguross() {
 		Collection <String> lista = new ArrayList();
 		for (SeguroAdicional elseg : seguros.values()) {
@@ -433,7 +458,23 @@ public class Rentadora {
 		
 		
 	}
-	
+	public Map<String, Integer> porFecha(){
+		Map<String, Integer> mapa = new HashMap();
+		
+		for (Reserva res : Reservas.values()) {
+			String fecha = res.getFechadeRecoleccion();
+			if (mapa.get(fecha) == null) {
+				mapa.put(fecha, 1);
+			}
+			else {
+				Integer cantidad = mapa.get(fecha)+1;
+				mapa.put(fecha, cantidad);
+				
+			}
+		}
+		return mapa;
+		
+	}
 	//public double obtenercobrofinalcontarifaadicional() {
 		
 	public void salvar(File archivoVehiculos, File archivoSede, File archivoReservas, File archivoPersonas, File archivoPro, File archivoSeg, File archivometodo) throws FileNotFoundException, UnsupportedEncodingException
