@@ -632,17 +632,15 @@ public class control {
 		caushaiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel(new GridLayout(13, 2, 40, 10));
 
-		JTextField categoria = new JTextField("");
-		JTextField sede = new JTextField("");
+		JLabel categoria = new JLabel("Por favor escoga la categoria del vehiculo que le gustaria reservar ");
+		JLabel sede = new JLabel("Por favor escoga la sede en la cual le gustaria recoger el vehiculo");
 		JTextField fechadeRecoleccion = new JTextField("");
 		JTextField horadeRecoleccion = new JTextField("");
 		JTextField fechadeEntrega = new JTextField("");
 		JTextField horadeEntrega = new JTextField("");
 		JTextField nombre = new JTextField("");
-		JLabel categoriaa = new JLabel(
-				"Estas son las categorias disponibles:\n Economico \n SUV \n Pequeño \n Lujo \n Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar: ");
-		JLabel sedee = new JLabel(
-				"Estas son las sedes disponibles:\n Motors Cañas \n Motors Palmas \n Motors Flora \n Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo: ");
+		JComboBox<String> categoriaa = new JComboBox<>(new String[] {"Economico","SUV","Pequeño","Lujo"});
+		JComboBox<String> sedee = new JComboBox<>(new String[] {"Motors Cañas","Motors Palmas","Motors Flora"});
 		JLabel fechadeRecoleccionn = new JLabel(
 				"Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo: ");
 		JLabel horadeRecoleccionn = new JLabel(
@@ -653,11 +651,11 @@ public class control {
 				"Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo::");
 		JLabel nombree = new JLabel("Por favor ingrese su nombre:");
 
-		panel.add(categoriaa); 
-		panel.add(categoria);
-		panel.add(sedee);
+		panel.add(categoria); 
+		panel.add(categoriaa);
 		panel.add(sede);
-		panel.add(fechadeRecoleccionn);
+		panel.add(sedee);
+		panel.add(fechadeRecoleccionn); 
 		panel.add(fechadeRecoleccion);
 		panel.add(horadeRecoleccionn);
 		panel.add(horadeRecoleccion);
@@ -677,8 +675,8 @@ public class control {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Double> lista;
 				try {
-					String categoriaaa = categoria.getText();
-					String sedeee = sede.getText();
+					String categoriaaa = (String) categoriaa.getSelectedItem();
+					String sedeee = (String) sedee.getSelectedItem();
 					String fechadeRecoleccionnn = fechadeRecoleccion.getText();
 					String horadeRecoleccionnn = horadeRecoleccion.getText();
 					String fechadeEntregaaa = fechadeEntrega.getText();
@@ -693,6 +691,8 @@ public class control {
 					double cobro30 = cobro * 0.3;
 					metodospago(cobro30);
 					factura(cobro30,nombreee,categoriaaa);
+					JOptionPane.showMessageDialog(caushaiel,"Se logro realizar la reserva puede pasar el " + fechadeRecoleccionnn+ " a las " + horadeRecoleccionnn + " en la sede "+ sede+". \r\nEl numero de su reserva es: " + id  , "ERROR",JOptionPane.ERROR_MESSAGE);
+
 					
 					
 						} catch (ParseException e1) {
@@ -700,7 +700,7 @@ public class control {
 					
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}   
 
 			}
 		});
@@ -721,9 +721,9 @@ public class control {
 
 	
 		
-	public void metodospago(double cobro30) {
+	public void metodospago(double cobro30) {   
 		JFrame master = new JFrame();
-	    master.setTitle("El monto que debe (30%) es: " + cobro30);
+	    master.setTitle("El monto que debe es: " + cobro30);
 	    master.setSize(300, 300);
 
 	    CardLayout cardLayout = new CardLayout();
